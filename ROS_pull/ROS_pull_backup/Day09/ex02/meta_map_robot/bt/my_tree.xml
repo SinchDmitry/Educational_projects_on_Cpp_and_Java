@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<root main_tree_to_execute="BehaviorTree">
+    <!-- ////////// -->
+    <BehaviorTree ID="BehaviorTree">
+        <Repeat num_cycles="-1">
+            <Sequence>
+                <Action ID="to_charge"/>
+                <Action ID="Calculator" data_output="${a}"/>
+                <Action ID="Move_maker" data_array="${a}"/>
+            </Sequence>
+        </Repeat>
+    </BehaviorTree>
+    <!-- ////////// -->
+    <TreeNodesModel>
+        <Action ID="Calculator">
+            <output_port name="data_output"/>
+        </Action>
+        <Action ID="Move_maker">
+            <input_port name="data_array"/>
+        </Action>
+        <Action ID="to_charge"/>
+    </TreeNodesModel>
+    <!-- ////////// -->
+</root>
+

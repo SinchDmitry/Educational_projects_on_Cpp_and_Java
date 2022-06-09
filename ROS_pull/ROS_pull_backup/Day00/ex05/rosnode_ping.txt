@@ -1,0 +1,8 @@
+rosnode: node is [/aarchiba_turtle]
+pinging /aarchiba_turtle with a timeout of 3.0s
+xmlrpc reply from http://dmtry-Lenovo-ideapad-520S-14IKB:45969/	time=0.512123ms
+xmlrpc reply from http://dmtry-Lenovo-ideapad-520S-14IKB:45969/	time=1.974583ms
+xmlrpc reply from http://dmtry-Lenovo-ideapad-520S-14IKB:45969/	time=2.201319ms
+xmlrpc reply from http://dmtry-Lenovo-ideapad-520S-14IKB:45969/	time=2.145767ms
+xmlrpc reply from http://dmtry-Lenovo-ideapad-520S-14IKB:45969/	time=2.223015ms
+ping average: 1.811361ms

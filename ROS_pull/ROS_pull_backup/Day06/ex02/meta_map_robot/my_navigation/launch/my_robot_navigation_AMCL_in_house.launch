@@ -1,0 +1,7 @@
+<launch>
+<arg name="map_file" default="$(find my_navigation)/maps/map.yaml"/>
+<include file="$(find my_navigation)/launch/turtlebot3_navigation.launch">
+     <arg name="map_file" value="$(arg map_file)"/> 
+</include>
+<include file="$(find my_gazebo)/launch/turtlebot3_house.launch"/>
+</launch>

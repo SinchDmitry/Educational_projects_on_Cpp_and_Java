@@ -1,0 +1,10 @@
+#goal definition
+string command
+int32 s
+int32 angle
+---
+#result definition
+bool result
+---
+#feedback
+int32 odom

@@ -1,0 +1,28 @@
+ <launch>
+ 
+   <group ns="Leonardo">
+     <node pkg="turtlesim" name="teleop" type="turtle_teleop_key"/>
+     <node pkg="turtlesim" name="sim" type="turtlesim_node"/>
+   </group>
+ 
+   <group ns="Donatello">
+     <node pkg="turtlesim" name="sim" type="turtlesim_node"/>
+   </group>
+
+   <group ns="Pavel">
+     <node pkg="turtlesim" name="sim" type="turtlesim_node"/>
+   </group>
+
+   <node pkg="turtlesim" name="mimic1" type="mimic">
+     
+     <remap from="input" to="Leonardo/turtle1"/>
+     <remap from="output" to="Pavel/turtle1"/>
+   </node>
+
+   <node pkg="turtlesim" name="mimic2" type="mimic">
+     <remap from="input" to="Pavel/turtle1"/>
+     <remap from="output" to="Donatello/turtle1"/>
+   </node>
+
+ 
+ </launch>

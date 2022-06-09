@@ -1,0 +1,11 @@
+Loaded plugin tf.tfwtf
+Package: rosmaster
+================================================================================
+Static checks summary:
+
+No errors or warnings
+================================================================================
+
+ROS Master does not appear to be running.
+Online graph checks will not be run.
+ROS_MASTER_URI is [http://localhost:11311]

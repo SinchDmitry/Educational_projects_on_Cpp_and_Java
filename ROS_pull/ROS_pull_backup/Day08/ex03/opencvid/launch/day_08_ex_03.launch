@@ -1,0 +1,4 @@
+<launch>
+    <!-- <node name="printer" pkg="opencv" type="printer" /> -->
+    <node name="cor" pkg="opencvid" type="cor" />
+</launch>
