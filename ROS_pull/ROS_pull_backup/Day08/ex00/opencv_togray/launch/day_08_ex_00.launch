@@ -1,4 +1,0 @@
-<launch>
-    <node name="printer" pkg="opencv_togray" type="printer" />
-    <node name="to_grey" pkg="opencv_togray" type="to_grey" />
-</launch>

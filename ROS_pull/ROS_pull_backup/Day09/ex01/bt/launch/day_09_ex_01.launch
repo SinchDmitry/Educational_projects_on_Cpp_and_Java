@@ -1,7 +1,0 @@
-<launch>
-    <node name="tree" pkg="bt" type="tree" output="screen"/>
-    <rosparam param="points">[[0.0, 0.0, 0.0], [1.0, 1.0, 1.0], [2.0, 2.0, 2.0]]</rosparam>
-    <!-- <param name="loop_num" type="int" value="-1"/> -->
-    <param name="time_to_repeat" type="int" value="3"/>
-
-</launch>

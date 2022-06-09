@@ -1,2 +1,0 @@
-/rosout
-/aarchiba_turtle

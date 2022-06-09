@@ -1,4 +1,0 @@
-001_talker_listener            005_add_two_ints       009_advanced_publish  srv
-002_headers                    006_parameters         cmake
-003_listener_with_user_data    007_connection_header  msg
-004_listener_subscribe_notify  008_on_shutdown        package.xml
