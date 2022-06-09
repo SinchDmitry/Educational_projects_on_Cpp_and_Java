@@ -6,9 +6,8 @@
 class	Bureaucrat;
 
 class	Form {
-	private :
+	protected :
 		const std::string	_name;
-		const std::string	_target;
 		bool				_sign;
 		const int			_signGrade;
 		const int			_execGrade;
@@ -24,10 +23,11 @@ class	Form {
 		bool 				beSigned(const Bureaucrat& clerk);
 		virtual void		beExec(const Bureaucrat& clerk) const = 0;
 		const std::string&	getName(void) const;
-		const bool			getSign(void) const;
-		const int			getSignGrade(void) const;
-		const int			getExecGrade(void) const;
-		
+		bool				getSign(void) const;
+		int					getSignGrade(void) const;
+		int					getExecGrade(void) const;
+		virtual void		printInfo(void) const = 0;
+
 		class	GradeTooLowException : public std::exception {
 			public : virtual const char* what() const throw();
 		} ;

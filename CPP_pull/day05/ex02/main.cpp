@@ -1,19 +1,44 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 int main () {
 	Bureaucrat	clerkOne("Mihail", 1);
 	Bureaucrat	clerkTwo("Boris", 160);
-	Form 		newDoc("Pact", 3, 200, 0);
+	std::cout << clerkOne << std::endl << clerkTwo << std::endl;
 
-	std::cout << "<clerk two :>" << std::endl;
-	std::cout << clerkTwo.getName() << " try to sign form : " << newDoc.getName() << std::endl;
-	clerkTwo.signForm(newDoc);
-	std::cout << "<low rang, but he can execute>" << std::endl;
-	clerkTwo.execForm(newDoc);
-	std::cout << "<clerk one :>" << std::endl;
-	std::cout << clerkOne.getName() << " try to sign form : " << newDoc.getName() << std::endl;
-	clerkOne.signForm(newDoc);
-	std::cout << "<try to sign one more time>" << std::endl;
-	clerkOne.signForm(newDoc);
+	{
+		try {
+			Form* tree = new ShrubberyCreationForm("AppleTree");
+			tree->printInfo();
+			tree->beExec(clerkOne);
+			tree->beExec(clerkTwo);
+		} catch (std::exception &e) {
+			std::cout << "Form can't be executed, bureaucrat" << e.what() << std::endl;
+		}
+	}
+
+	{
+		try {
+			Form* drill = new RobotomyRequestForm("Android");
+			drill->printInfo();
+			drill->beExec(clerkOne);
+			drill->beExec(clerkTwo);
+		} catch (std::exception &e) {
+			std::cout << "Form can't be executed, bureaucrat" << e.what() << std::endl;
+		}
+	}
+
+	{
+		try {
+			Form* pardon = new PresidentialPardonForm("Joker");
+			pardon->printInfo();
+			pardon->beExec(clerkOne);
+			pardon->beExec(clerkTwo);
+		} catch (std::exception &e) {
+			std::cout << "Form can't be executed, bureaucrat" << e.what() << std::endl;
+		}
+	}
 }

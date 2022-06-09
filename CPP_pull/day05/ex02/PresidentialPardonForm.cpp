@@ -1,39 +1,44 @@
 # include "PresidentialPardonForm.hpp"
 
 PresidentialPardonForm::PresidentialPardonForm(void) : 
-	_name("President pardon form"),
-	_target("";)
-	_sign(0),
-	_execGrade(5),
-	_signGrade(25) {}
+	Form("President Pardon Form", 25, 5, 0),
+	_target("") {}
 
-PresidentialPardonForm::~PresidentialPardonForm(void) {
-}
+PresidentialPardonForm::~PresidentialPardonForm(void) {}
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string& target) : 
-	_name("President pardon form"),
-	_target(target),
-	_sign(0),
-	_execGrade(5),
-	_signGrade(25) {}
+	Form("President Pardon Form", 25, 5, 0),
+	_target(target) {}
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& copy) :
-	_name(copy._name),
-	_sign(copy._sign),
-	_execGrade(copy._execGrade),
-	_signGrade(copy._signGrade) {}
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& copy) : 
+	Form(copy.getName(), copy.getSignGrade(), copy.getExecGrade(), copy.getSign()),
+	_target(copy._target) {}
 
 PresidentialPardonForm&	PresidentialPardonForm::operator = (const PresidentialPardonForm& op) {
 	if (this != &op) {
-		_sign = op._sign;
+		_target = op._target;
 	}
 	return *this;
 }
 
 void	PresidentialPardonForm::beExec(const Bureaucrat& clerk) const {
-	if (clerk.getGrade() > _execGrade) {
+	if (clerk.getGrade() > this->getExecGrade()) {
 		throw Form::GradeTooLowException(); // method ?
 	} else {
 		std::cout << this->_target << " has been pardoned by Zafod Beeblebrox" << std::endl;
 	}
+}
+
+const std::string&	PresidentialPardonForm::getTarget(void) const {
+	return _target;
+}
+
+void	PresidentialPardonForm::printInfo(void) const {
+	std::cout << "*******************************"  << std::endl;
+	std::cout << "Form's type : " << getName() << std::endl;
+	std::cout << "Form's name : " << getTarget() << std::endl;
+	std::cout << "Form's grade to execute : " << getExecGrade() << std::endl;
+	std::cout << "Form's grade to sign : " << getSignGrade() << std::endl;
+	std::cout << "Is form's already signed : " << ((getSign() == 1) ? "yes" : "no") << std::endl;
+	std::cout << "*******************************"  << std::endl;
 }

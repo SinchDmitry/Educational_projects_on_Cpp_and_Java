@@ -26,6 +26,7 @@ bool	Replace::swap(std::string s1, std::string s2) {
 	outputFileName = _inputFileName + ".replace";
 	outputFile.open(outputFileName);
 	outputFile << _fileToString;
+	outputFile.close();
 	return true;
 }
 
@@ -40,8 +41,10 @@ bool	Replace::open(std::string filename) {
 					_fileToString += "\n";
 				}
 			}
+			_inputFile.close();
 			return true;
 		} else {
+			_inputFile.close();
 			return false;
 		}
 	} else {

@@ -5,6 +5,8 @@
 # include "Bureaucrat.hpp"
 
 class PresidentialPardonForm : public Form {
+	private :
+		std::string	_target;
 	public : 
 		PresidentialPardonForm(void);
 		~PresidentialPardonForm(void);
@@ -12,7 +14,11 @@ class PresidentialPardonForm : public Form {
 		PresidentialPardonForm(const PresidentialPardonForm& copy);
 		PresidentialPardonForm&	operator = (const PresidentialPardonForm& op);
 		
-		void	beExec(const Bureaucrat& clerk) const;
+		void				beExec(const Bureaucrat& clerk) const;
+		const std::string&	getTarget(void) const;
+		void				printInfo(void) const;
 } ;
+
+std::ostream& operator<<(std::ostream& out, PresidentialPardonForm const &other);
 
 #endif

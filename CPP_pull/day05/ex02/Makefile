@@ -1,7 +1,10 @@
 NAME			= 	Form
 SRCS			=	main.cpp \
 					Bureaucrat.cpp \
-					Form.cpp
+					Form.cpp \
+					PresidentialPardonForm.cpp \
+					RobotomyRequestForm.cpp \
+					ShrubberyCreationForm.cpp
 
 OBJS			= $(SRCS:.cpp=.o)
 DEP				= $(SRCS:.cpp=.d)

@@ -5,6 +5,8 @@
 # include "Bureaucrat.hpp"
 
 class ShrubberyCreationForm : public Form {
+	private :
+		std::string	_target;
 	public : 
 		ShrubberyCreationForm(void);
 		~ShrubberyCreationForm(void);
@@ -12,6 +14,10 @@ class ShrubberyCreationForm : public Form {
 		ShrubberyCreationForm(const ShrubberyCreationForm& copy);
 		ShrubberyCreationForm&	operator = (const ShrubberyCreationForm& op);
 
+		void				beExec(const Bureaucrat& clerk) const;
+		const std::string&	getTarget(void) const;
+		void				printInfo(void) const;
 } ;
+
 
 #endif

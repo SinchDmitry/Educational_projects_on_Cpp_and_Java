@@ -3,7 +3,6 @@
 
 Form::Form(void) : 
 	_name("typical form"), 
-	_target(""), 
 	_sign(0), 
 	_signGrade(150), 
 	_execGrade(150) {
@@ -26,7 +25,6 @@ int	Form::_checkGrade(const int& grade) {
 
 Form::Form(std::string nombre, int signGr, int execGr, bool sign) : 
 	_name(nombre),
-	_target(""), 
 	_sign(sign), 
 	_signGrade(_checkGrade(signGr)), 
 	_execGrade(_checkGrade(execGr)) {}
@@ -50,15 +48,15 @@ const std::string&	Form::getName(void) const {
 	return	_name;
 }
 
-const int&	Form::getSignGrade(void) const {
+int	Form::getSignGrade(void) const {
 	return	_signGrade;
 }
 
-const int&	Form::getExecGrade(void) const {
+int	Form::getExecGrade(void) const {
 	return	_execGrade;
 }
 
-const bool& Form::getSign(void) const {
+bool	Form::getSign(void) const {
 	return	_sign;
 }
 
@@ -75,14 +73,14 @@ bool	Form::beSigned(const Bureaucrat& clerk) {
 }
 
 const char*	Form::GradeTooLowException::what() const throw() {
-	return	"To low grade to use form";
+	return	" has too low grade to use form";
 }
 
-const char* what() const throw() {
+const char* Form::CantExecuteForm::what() const throw() {
 	return "The form cannot be executed";
 }
 
-std::ostream &	operator<<( std::ostream& out, Form const& other)
+std::ostream&	operator << (std::ostream& out, Form const& other)
 {
 	out << other.getName() << " Form has to be signed by a "
 		<< other.getSignGrade() << " grade and executed by a "
