@@ -23,5 +23,5 @@
 &emsp; **day05** - SQL/JDBC. Today you will use the key mechanisms to work with PostgreSQL DBMS via JDBC. <br/>
 &emsp; **day06** - JUnit/Mockito. Today you will learn the basics of module and integration testing. <br/>
 &emsp; **day07** - Reflection. Today you will develop your own frameworks that use the reflection mechanism. <br/>
-&emsp; **day08** - Spring. Today you will learn about enterprise-level Java development and the basics of the Spring framework. 
+&emsp; **day08** - Spring. Today you will learn about enterprise-level Java development and the basics of the Spring framework. <br/>
 &emsp; **day09**
