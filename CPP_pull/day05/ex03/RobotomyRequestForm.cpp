@@ -50,3 +50,7 @@ void	RobotomyRequestForm::printInfo(void) const {
 	std::cout << "Is form's already signed : " << ((getSign() == 1) ? "yes" : "no") << std::endl;
 	std::cout << "*******************************"  << std::endl;
 }
+
+Form*	RobotomyRequestForm::formGenerator(const std::string& target) {
+	return	new RobotomyRequestForm(target);
+}

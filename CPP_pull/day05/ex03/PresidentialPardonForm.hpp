@@ -17,6 +17,7 @@ class PresidentialPardonForm : public Form {
 		void				beExec(const Bureaucrat& clerk) const;
 		const std::string&	getTarget(void) const;
 		void				printInfo(void) const;
+		static Form* 		formGenerator(const std::string& target);
 } ;
 
 std::ostream& operator<<(std::ostream& out, PresidentialPardonForm const &other);

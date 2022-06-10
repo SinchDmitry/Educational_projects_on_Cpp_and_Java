@@ -42,3 +42,7 @@ void	PresidentialPardonForm::printInfo(void) const {
 	std::cout << "Is form's already signed : " << ((getSign() == 1) ? "yes" : "no") << std::endl;
 	std::cout << "*******************************"  << std::endl;
 }
+
+Form*	PresidentialPardonForm::formGenerator(const std::string& target) {
+	return	new PresidentialPardonForm(target);
+}

@@ -2,6 +2,7 @@ NAME			= 	Form
 SRCS			=	main.cpp \
 					Bureaucrat.cpp \
 					Form.cpp \
+					Intern.cpp \
 					PresidentialPardonForm.cpp \
 					RobotomyRequestForm.cpp \
 					ShrubberyCreationForm.cpp
