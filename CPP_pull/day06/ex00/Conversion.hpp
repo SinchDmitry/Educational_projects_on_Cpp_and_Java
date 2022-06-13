@@ -1,14 +1,18 @@
 #ifndef CONVERSION_HPP
 # define CONVERSION_HPP
 
+# include <iostream>
+# include <cstdlib>
+# include <cctype>
+#include <sstream>
+
 class	Conversion {
 	private :
-		char	_asChar;
-		int		_asInt;
-		float	_asFloat;
-		double	_asDouble;
+		std::string	_inputLit;
+		double		_asDouble;
 
-		
+		std::string dtos(const double& x) const;
+		std::string ftos(const float& x) const;  
 
 	public :
 		Conversion(void);
@@ -17,14 +21,12 @@ class	Conversion {
 		Conversion(const Conversion& copy);
 		Conversion& operator = (const Conversion& op);
 
-		void	parseInput();
+		void		parseInput(void);
 
-		char	getAsChar() const;
-		int		getAsInt() const;
-		float	getAsFloat() const;
-		double	getAsDouble() const;
-
-
+		char		getAsChar(void) const;
+		int			getAsInt(void) const;
+		std::string	getAsFloat(void) const;
+		std::string getAsDouble(void) const;
 } ;
 
 #endif

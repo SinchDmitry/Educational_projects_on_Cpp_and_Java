@@ -1,4 +1,4 @@
-NAME			= 	Form
+NAME			= 	Converse
 SRCS			=	main.cpp \
 					Conversion.cpp
 
