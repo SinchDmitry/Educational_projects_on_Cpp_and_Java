@@ -7,7 +7,7 @@
 class Bureaucrat {
 	protected:
 		std::string	_name;
-		int			_grade;
+		int			_grade;x
 	
 	public:
 		Bureaucrat(void);
@@ -17,15 +17,15 @@ class Bureaucrat {
 		Bureaucrat&	operator = (const Bureaucrat& op);
 
 		const std::string&	getName(void) const;
-		const int&			getGrade(void) const;
+		int					getGrade(void) const;
 		void				UpGrade(void);
 		void				DownGrade(void);
 
 		class	GradeTooHighException : public std::exception {
-			virtual const char* what() const throw();
+			public : virtual const char* what() const throw();
 		} ;
 		class	GradeTooLowException : public std::exception {
-			virtual const char* what() const throw();
+			public : virtual const char* what() const throw();
 		} ;
 } ;
 

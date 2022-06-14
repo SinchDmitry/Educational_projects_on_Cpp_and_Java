@@ -8,8 +8,8 @@ class Data {
 		std::string	_data;
 
 	public :
-		Data() {}
-		~Data() {}
+		Data(void) {}
+		~Data(coid) {}
 		Data(const Data& copy) { *this = copy; }
 		Data& operator = (const Data& op) { 
 			if (this != &op) { _data = op._data; } 

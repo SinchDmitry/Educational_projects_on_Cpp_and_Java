@@ -27,10 +27,10 @@ class	Bureaucrat {
 		bool				signForm(Form &form);
 
 		class	GradeTooHighException : public std::exception {
-			virtual const char* what() const throw();
+			private : virtual const char* what() const throw();
 		} ;
 		class	GradeTooLowException : public std::exception {
-			virtual const char* what() const throw();
+			private : virtual const char* what() const throw();
 		} ;
 } ;
 
