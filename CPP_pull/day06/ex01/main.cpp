@@ -9,4 +9,4 @@ int	main() {
 	raw = serialize(ptr);
 	new_ptr = deserialize(raw);
 	std::cout << "read after reinterpret : " << new_ptr->getData() << std::endl;
-}..
+}
