@@ -1,4 +1,5 @@
-
+#ifndef WHATEVER_HPP
+# define WHATEVER_HPP
 #include <iostream>
 
 template<typename T>
@@ -18,3 +19,5 @@ template<typename T>
 const T&	max(const T& x, const T& y) {
 	return (x > y ? x : y);
 }
+
+#endif

@@ -1,53 +1,32 @@
-#include <iostream>
-#include <Array.hpp>
+#include "Iter.hpp"
 
-#define MAX_VAL 750
-int main(int, char**)
+template<typename T>
+void	demo(T &obj){
+	std::cout << "element of array is : " << obj << std::endl;
+}
+
+int	main( void )
 {
-    Array<int> numbers(MAX_VAL);
-    int* mirror = new int[MAX_VAL];
-    srand(time(NULL));
-    for (int i = 0; i < MAX_VAL; i++)
-    {
-        const int value = rand();
-        numbers[i] = value;
-        mirror[i] = value;
-    }
-    //SCOPE
-    {
-        Array<int> tmp = numbers;
-        Array<int> test(tmp);
-    }
+	{
+		std::string	strArr[5];
 
-    for (int i = 0; i < MAX_VAL; i++)
-    {
-        if (mirror[i] != numbers[i])
-        {
-            std::cerr << "didn't save the same value!!" << std::endl;
-            return 1;
-        }
-    }
-    try
-    {
-        numbers[-2] = 0;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    try
-    {
-        numbers[MAX_VAL] = 0;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
+		strArr[0] = "Is";
+		strArr[1] = "this";
+		strArr[2] = "function";
+		strArr[3] = "useful";
+		strArr[4] = "?";
 
-    for (int i = 0; i < MAX_VAL; i++)
-    {
-        numbers[i] = rand();
-    }
-    delete [] mirror;//
-    return 0;
+		::iter(strArr, 5, &demo);
+	}
+	{
+		std::cout << "****************************************"<< std::endl;
+		int*		intArr = new int[5];
+		
+		for (int i = 0; i < 5; i ++) {
+			intArr[i] = 5 - i;
+		}
+
+		::iter(intArr, 5, &demo);
+		delete [] intArr;
+	}
 }
