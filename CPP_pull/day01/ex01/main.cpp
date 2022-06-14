@@ -6,5 +6,5 @@ int	main(void)
 	paul.announce();
 	std::cout << "Zombie wich created with newZombie constructor" << std::endl;
 	Zombie	*ded = zombieHorde(5, "Ded");
-	delete [] ded;
+	operator delete[] (ded);
 }

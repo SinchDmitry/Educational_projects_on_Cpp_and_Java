@@ -14,6 +14,11 @@ class Array {
 		Array(unsigned int n);
 		Array(const Array& copy);
 		Array&	operator = (const Array& op);
+
+		T& operator [] (int index);
+		const T& operator [] (int index) const;
+
+		int size(void) const;
 } ;
 
 #endif

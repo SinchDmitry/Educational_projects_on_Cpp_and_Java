@@ -1,5 +1,5 @@
 NAME			= 	Array
-SRCS			=	main.cpp 
+SRCS			=	main.cpp
 
 OBJS			= $(SRCS:.cpp=.o)
 DEP				= $(SRCS:.cpp=.d)
