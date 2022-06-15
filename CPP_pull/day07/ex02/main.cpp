@@ -4,10 +4,10 @@
 int main(int, char**)
 {
 	std::cout << "int array element copy" << std::endl;
-    Array<int> numbers;
+    Array<int> numbers(MAX_VAL);
     int* mirror = new int[MAX_VAL];
     srand(time(NULL));
-	try {
+
     for (int i = 0; i < MAX_VAL; ++i) {
         const int value = rand() % 5;
         numbers[i] = value;
@@ -19,9 +19,11 @@ int main(int, char**)
 	}
     //SCOPE
     {
-		std::cout << "int array empty constructor" << std::endl;
-		Array<int> test;
-		std::cout << "size of empty array : " << test.size() << std::endl;
+		{
+			std::cout << "int array empty constructor" << std::endl;
+			Array<int> test;
+			std::cout << "size of empty array : " << test.size() << std::endl;
+		}
 
 		std::cout << "int array constructor copy" << std::endl;
         Array<int> tmp = numbers;
@@ -64,9 +66,6 @@ int main(int, char**)
             return 1;
         }
     }
-	}  catch (std::exception& e) {
-		std::cerr << e.what() << std::endl;
-	}
 
     delete [] mirror;
     return 0;
