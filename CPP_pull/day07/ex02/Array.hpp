@@ -1,7 +1,11 @@
 #ifndef ARRAY_HPP
 # define ARRAY_HPP
 
+# include <cstdlib>
 # include <iostream>
+# include <ctime>
+# include <exception>
+# include <cctype>
 
 template<typename T>
 class Array {
@@ -19,6 +23,12 @@ class Array {
 		const T& operator [] (int index) const;
 
 		int size(void) const;
+
+		class OutOfRange: public std::exception {
+			public : virtual const char* what() const throw();
+		};
 } ;
+
+# include "Array.tpp"
 
 #endif

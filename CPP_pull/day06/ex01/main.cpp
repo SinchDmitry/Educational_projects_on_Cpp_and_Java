@@ -1,8 +1,8 @@
 #include "Data.hpp"
 
 int	main() {
-	Data		*ptr = new Data;
-	Data		*new_ptr;
+	Data*		ptr = new Data;
+	Data*		new_ptr;
 	uintptr_t	raw;
 
 	ptr->setData("Letters and words before");

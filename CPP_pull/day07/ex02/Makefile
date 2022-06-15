@@ -1,5 +1,5 @@
 NAME			= 	Array
-SRCS			=	main.cpp
+SRCS			=	main.cpp 
 
 OBJS			= $(SRCS:.cpp=.o)
 DEP				= $(SRCS:.cpp=.d)
@@ -7,8 +7,7 @@ DEP				= $(SRCS:.cpp=.d)
 CXX				= c++
 
 RM				= rm -f
-CXXFLAGS		= -Wall -Wextra -Werror -I. -MD -std=c++98
-
+CXXFLAGS		= -Wall -Wextra -Werror -I. -MD 
 
 all:			$(NAME)
 

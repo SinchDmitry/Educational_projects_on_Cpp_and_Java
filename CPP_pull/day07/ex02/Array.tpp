@@ -19,7 +19,7 @@ Array<T>::Array(unsigned int n) : _size(n) {
 }
 
 template<typename T>
-Array<T>::Array(const Array& copy) {
+Array<T>::Array(const Array& copy) : _size(0), _arrayTemp(NULL) {
 	*this = copy;
 }
 
@@ -29,7 +29,7 @@ Array<T>&	Array<T>::operator = (const Array& op) {
 		if (_size > 0) {
 			delete [] _arrayTemp;
 		}
-		_arrayTemp = nullptr;
+		_arrayTemp = NULL;
 		if (op._size > 0) {
 			_size = op._size;
 			_arrayTemp = new T[op._size]();
@@ -43,9 +43,9 @@ Array<T>&	Array<T>::operator = (const Array& op) {
 
 template<typename T>
 T&	Array<T>::operator [] (int index) {
-	// if (index >= _size) {
-	// 	throw Array::OutOfBoundsException();
-	// }
+	if (index >= _size || index < 0) {
+		throw Array::OutOfRange();
+	}
 	return _arrayTemp[index];
 }
 
@@ -57,4 +57,9 @@ const T& Array<T>::operator [] (int index) const {
 template<typename T>
 int Array<T>::size(void) const {
 	return _size;
+}
+
+template<typename T>
+const char* Array<T>::OutOfRange::what() const throw() {
+	return "ArrayException: index out of bounds";
 }
