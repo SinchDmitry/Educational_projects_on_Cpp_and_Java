@@ -1,7 +1,7 @@
 #include "Iter.hpp"
 
 template<typename T>
-void	demo(T &obj){
+void	demo(const T& obj){
 	std::cout << "element of array is : " << obj << std::endl;
 }
 

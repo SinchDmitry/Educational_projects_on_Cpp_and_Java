@@ -5,7 +5,7 @@ int	main(int argc, char **argv) {
 		Conversion a(argv[1]);
 		if (a.parseInput()) {
 			std::cout 
-			<<"char : " << a.getAsChar() << std::endl 
+			<< "char : " << a.getAsChar() << std::endl 
 			<< "int : " << a.getAsInt()  << std::endl 
 			<< "float : " << a.getAsFloat() << std::endl 
 			<< "double : "<< a.getAsDouble() << std::endl;
