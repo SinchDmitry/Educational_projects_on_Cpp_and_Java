@@ -31,7 +31,7 @@ std::string Conversion::ftos(const float& x) const {
     return s.str();
 }
 
-void	Conversion::parseInput() {
+bool	Conversion::parseInput() {
 	bool	dig = 0;
 	if (!_inputLit.empty()) {
 		for (int i = 0; i < (int)_inputLit.length(); ++i){
@@ -48,8 +48,11 @@ void	Conversion::parseInput() {
 			_asDouble = static_cast<double>(_inputLit[0]);
 		} else {
 			std::cout << "Incorrect argument" << std::endl;
+			return 0;
 		}
+		return 1;
 	}
+	return 0;
 }
 
 char	Conversion::getAsChar(void) const {

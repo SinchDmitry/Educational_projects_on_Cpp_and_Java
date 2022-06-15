@@ -2,6 +2,7 @@
 # define DATA_HPP
 
 # include <iostream>
+# include <stdint.h>
 
 class Data {
 	private :
@@ -9,7 +10,7 @@ class Data {
 
 	public :
 		Data(void) {}
-		~Data(coid) {}
+		~Data(void) {}
 		Data(const Data& copy) { *this = copy; }
 		Data& operator = (const Data& op) { 
 			if (this != &op) { _data = op._data; } 

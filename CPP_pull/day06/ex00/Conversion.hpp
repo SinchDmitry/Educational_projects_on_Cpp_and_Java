@@ -21,7 +21,7 @@ class	Conversion {
 		Conversion(const Conversion& copy);
 		Conversion& operator = (const Conversion& op);
 
-		void		parseInput(void);
+		bool		parseInput(void);
 
 		char		getAsChar(void) const;
 		int			getAsInt(void) const;
