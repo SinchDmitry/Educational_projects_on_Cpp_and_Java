@@ -1,5 +1,6 @@
-NAME			= 	Find
-SRCS			=	main.cpp 
+NAME			= 	Span
+SRCS			=	main.cpp \
+					Span.cpp
 
 OBJS			= $(SRCS:.cpp=.o)
 DEP				= $(SRCS:.cpp=.d)

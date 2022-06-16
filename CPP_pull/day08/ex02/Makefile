@@ -1,4 +1,4 @@
-NAME			= 	Find
+NAME			= 	MutantStack
 SRCS			=	main.cpp 
 
 OBJS			= $(SRCS:.cpp=.o)
