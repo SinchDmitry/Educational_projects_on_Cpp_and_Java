@@ -38,13 +38,13 @@ int main(int, char**)
         numbers[-2] = 0;
     }
     catch(std::exception& e) {
-        std::cerr << e.what() << '\n';
+        std::cerr << e.what() << std::endl;
     }
     try {
         numbers[MAX_VAL] = 0;
     }
     catch(std::exception& e) {
-        std::cerr << e.what() << '\n';
+        std::cerr << e.what() << std::endl;
     }
 
 	std::cout << "if some element not equel, error" << std::endl;
