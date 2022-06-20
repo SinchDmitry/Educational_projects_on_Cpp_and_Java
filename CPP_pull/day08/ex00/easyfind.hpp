@@ -8,8 +8,8 @@
 class ObjNotFound : public std::exception
 {
 	public : virtual const char* what() const throw() { 
-		return ("Object not found");
-		}
+		return "Object not found";
+	}
 };
 
 template<typename T>

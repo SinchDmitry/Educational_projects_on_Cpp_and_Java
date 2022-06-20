@@ -29,6 +29,7 @@ int main() {
 		}
 		try {
 			n = easyFind(arr, val);
+			// only for vector
 			std::cout << "iterator: " << *n << " on " 
 				<< n - arr.begin() << " place." << std::endl;
 		} catch (std::exception &e) {
