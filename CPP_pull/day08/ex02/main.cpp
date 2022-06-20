@@ -19,7 +19,7 @@ int main()
 	}
 	std::cout << "****************************************"<< std::endl;
     std::cout << "size of mutantStack : " <<   randStack.size() << std::endl;
-    std::cout << "first in mutantStack : " <<   randStack.top() << std::endl;
+    std::cout << "top in mutantStack : " <<   randStack.top() << std::endl;
     MutantStack<int>::iterator it = randStack.begin();
     MutantStack<int>::iterator ite = randStack.end();
     printStack(it, ite);
@@ -28,7 +28,7 @@ int main()
     std::cout << "pop 1 element" << std::endl;
     randStack.pop();
     std::cout << "size of mutantStack : " << randStack.size() << std::endl;
-    std::cout << "first in mutantStack : " << randStack.top() << std::endl;
+    std::cout << "top in mutantStack : " << randStack.top() << std::endl;
 	it = randStack.begin();
 	ite = randStack.end();
 	printStack(it, ite);
