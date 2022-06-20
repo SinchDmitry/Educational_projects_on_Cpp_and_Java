@@ -1,25 +1,43 @@
 #include "MutantStack.hpp"
+#include <ctime>
 
-int main() {
-	MutantStack<int> mstack;
-	mstack.push(5);
-	mstack.push(17);
-	std::cout << mstack.top() << std::endl;
-	mstack.pop();
-	std::cout << mstack.size() << std::endl;
-	mstack.push(3);
-	mstack.push(5);
-	mstack.push(737);
-	//[...]
-	mstack.push(0);
-	MutantStack<int>::iterator it = mstack.begin();
-	MutantStack<int>::iterator ite = mstack.end();
-	++it;
-	--it;
-	while (it != ite) {
-		std::cout << *it << std::endl;
-		++it;
+
+template <typename T>
+void    printStack(T& st,  T& fin) {
+    while (st != fin) {
+        std::cout << *st << std::endl;
+        ++st;
+    }
+}
+
+int main()
+{
+	srand(time(NULL));
+    MutantStack<int> randStack;
+    for (int i = 0; i < 10; ++i) {
+          randStack.push(rand());
 	}
-	std::stack<int> s(mstack);
-	return 0;
+	std::cout << "****************************************"<< std::endl;
+    std::cout << "size of mutantStack : " <<   randStack.size() << std::endl;
+    std::cout << "first in mutantStack : " <<   randStack.top() << std::endl;
+    MutantStack<int>::iterator it = randStack.begin();
+    MutantStack<int>::iterator ite = randStack.end();
+    printStack(it, ite);
+
+	std::cout << "****************************************"<< std::endl;
+    std::cout << "pop 1 element" << std::endl;
+    randStack.pop();
+    std::cout << "size of mutantStack : " << randStack.size() << std::endl;
+    std::cout << "first in mutantStack : " << randStack.top() << std::endl;
+	it = randStack.begin();
+	ite = randStack.end();
+	printStack(it, ite);
+
+	std::cout << "****************************************"<< std::endl;
+	std::cout << "just reverse" << std::endl;
+    MutantStack<int>::reverse_iterator rit =  randStack.rbegin();
+    MutantStack<int>::reverse_iterator rite = randStack.rend();
+    printStack(rit, rite);
+
+    return 0;
 }
