@@ -1,5 +1,5 @@
 # Educational_projects_on_Cpp
-**CPP_pull** : <br/>
+**CPP_pool** : <br/>
 &emsp; **day00** - Namespaces, classes, member functions, stdio streams, initialization lists, static, const, and some other basic stuff. <br/>
 &emsp; **day01** - Memory allocation, pointers to members, references, switch statement. <br/>
 &emsp; **day02** - Ad-hoc polymorphism, operator overloading and Orthodox Canonical class form. <br/>
@@ -12,9 +12,9 @@
 
 **Libbgardt&Co** - Тестовое задание
 
-**ROS_pull** - Тестовый интенсив от школы21. Введение в ROS.
+**ROS_pool** - Тестовый интенсив от школы21. Введение в ROS.
 
-**Java_pull** : <br/>
+**Java_pool** : <br/>
 &emsp; **day00** - Management structures and arrays. Today, you will learn the basics of solving both trivial and more challenging business tasks using basic Java language constructs. <br/>
 &emsp; **day01** - OOP/Collections. Today you will learn how to model the operation of various collections correctly, and create a full-scale money transfer application. <br/>
 &emsp; **day02** - IO, Files. Today you will learn how to use input/output in Java and implement programs to manipulate a file system. <br/>
