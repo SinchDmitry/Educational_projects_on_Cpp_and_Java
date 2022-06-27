@@ -1,5 +1,5 @@
 package ex01;
-import java.util.Scanner;
+import  java.util.Scanner;
 
 public class Program {
     public static void main(String[] args) {
