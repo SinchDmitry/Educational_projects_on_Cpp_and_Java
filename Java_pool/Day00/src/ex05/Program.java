@@ -8,15 +8,11 @@ public class Program {
         int[][] dataOfLesson = new int[30][10];
         int namesLength = addStudents(input, names);
         int classesLength = addClasses(dataOfLesson, input);
-//        for (int i = 0; i < 30; i++) {
-//            for (int j = 0; j < 10; j++) {
-//                System.out.printf("%10d" + "|", dataOfLesson[i][j]);
-//            }
-//            System.out.println("");
-//        }
         int[][] printableSchedule = addAttend(names, dataOfLesson, input,
                 namesLength, classesLength);
         printResult(names, dataOfLesson, printableSchedule, classesLength, namesLength);
+        input.close();
+        System.exit(0);
     }
 
     private static void errorEnd() {
@@ -106,6 +102,8 @@ public class Program {
                 } else {
                     errorEnd();
                 }
+            } else {
+                errorEnd();
             }
         }
         return (numOfClasses);
@@ -157,7 +155,7 @@ public class Program {
         return (0);
     }
 
-    private static int  checkStudent(String[] names, Scanner input, String  tmpName, int height) {
+    private static int  checkStudent(String[] names, String  tmpName, int height) {
         int     stringSchedule = -1;
         for (int i = 0; i < height; i++) {
             if (names[i].equals(tmpName)) {
@@ -184,7 +182,7 @@ public class Program {
                if (tmpName.equals(".")) {
                    break;
                } else {
-                   stringSchedule = checkStudent(names, input, tmpName, height);
+                   stringSchedule = checkStudent(names, tmpName, height);
                    if (input.hasNextInt()) {
                        timeNum = input.nextInt();
                        if (timeNum < 1 || timeNum > 6) {
@@ -226,7 +224,6 @@ public class Program {
     }
 
     private static void printFirstString(int[][] dataOfLesson) {
-        int i = 0;
         System.out.print("          ");
         for (int k = 0; k < 30; k++) {
             for (int j = 0; j < 10; j++) {
@@ -235,7 +232,7 @@ public class Program {
                 }
             }
         }
-        System.out.println("");
+        System.out.println();
     }
 
     private static void printResult(String[] names, int[][] dataOfLesson, int[][] printableSchedule,
@@ -250,7 +247,7 @@ public class Program {
                     System.out.print("          " + "|");
                 }
             }
-            System.out.println("");
+            System.out.println();
         }
     }
 }
