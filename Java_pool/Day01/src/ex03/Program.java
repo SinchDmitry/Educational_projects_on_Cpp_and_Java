@@ -6,19 +6,19 @@ public class Program {
         User paul = new User("Pauk", 50000);
 		User alex = new User("Sanek", 1000);
 
-		System.out.println(dima.toString());
-        System.out.println(paul.toString());
-		System.out.println(alex.toString());
+		System.out.println(dima);
+        System.out.println(paul);
+		System.out.println(alex);
 
         Transaction tOne = new Transaction(paul, alex, Transaction.Operation.debet, 1000);
 		tOne.setBalance(paul, alex, 1000);
-		System.out.println(tOne.toString());
+		System.out.println(tOne);
         paul.addTransaction(tOne);
         alex.addTransaction(tOne);
 
         Transaction tTwo = new Transaction(paul, dima, Transaction.Operation.credit, -800);
 		tTwo.setBalance(paul, dima, -800);
-		System.out.println(tTwo.toString());
+		System.out.println(tTwo);
         paul.addTransaction(tTwo);
         dima.addTransaction(tTwo);
 
@@ -46,6 +46,12 @@ public class Program {
         }
 		System.out.println("########### END ###########");
 
+        System.out.println("Paul's transactions before removing");
+        paulTr = paul.getTransactionArray();
+        for (int i = 0; i <paulTr.length; ++i) {
+            System.out.printf("########### %d ###########\n", i);
+            System.out.println(paulTr[i].toString());
+        }
         System.out.println("Removing Paul's transactions by ID");
         String id =paulTr[1].getId();
         System.out.printf("ID: %s\n", id);
@@ -55,6 +61,7 @@ public class Program {
         System.out.println("Paul's transactions");
         paulTr = paul.getTransactionArray();
         for (int i = 0; i <paulTr.length; ++i) {
+            System.out.printf("########### %d ###########\n", i);
             System.out.println(paulTr[i].toString());
         }
 

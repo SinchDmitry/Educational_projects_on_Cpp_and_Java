@@ -6,82 +6,106 @@ class TransactionNotFoundException extends RuntimeException {
     }
 }
 
-class Node {
-	Node prev; 
-	Node next;
-	Transaction t;
-
-	public Node(Node prev, Node next, Transaction t) {
-		this.prev = prev;
-		this.next = next;
-		this.t = t;
-	}
-}
-
 public class TransactionsLinkedList implements TransactionsList {
 
-	private int size;
-	private Node first;
-	private Node last;
+	static class Node {
+		public Node _prev;
+		public Node _next;
+		public Transaction  _t;
+
+		public Node(Node prev, Node next, Transaction t) {
+			_prev = prev;
+			_next = next;
+			_t = t;
+		}
+	}
+
+	private int 	_size;
+	private Node 	_first;
+	private Node 	_last;
+
+	private void setNewExtremeVal(Node input, String type) {
+		if (type.equals("first")) {
+			_first = input;
+			_first._prev = null;
+		} else if (type.equals("last")) {
+			_last = input;
+			_last._next = null;
+		}
+
+	}
 
 	public TransactionsLinkedList() {
-        this.size = 0;
-		this.first = null;
-		this.last = null;
+        _size = 0;
+		_first = null;
+		_last = null;
     }
 
 	@Override
 	public void	add(Transaction t) {
 		Node tmp;
 
-		if (this.last == null){
+		if (_last == null){
 			tmp = new Node(null, null, t);
-			this.last = tmp;
-			this.first = tmp;
+			_last = tmp;
+			_first = tmp;
 		} else {
-			tmp = new Node(this.last, null, t);
-			this.last.next = tmp;
-			this.last = tmp;
+			tmp = new Node(_last, null, t);
+			_last._next = tmp;
+			_last = tmp;
 		}
-		this.size++;
+		_size++;
 	}
 
 	@Override
 	public Transaction	remove(String id) {
-		Node tmp = this.first;
+		Node tmp = _first;
 
 		while (tmp != null) {
-			if (tmp.t.getId().equals(id)) {
-				if (tmp.prev != null) {
-					tmp.prev.next = tmp.next;
+			if (tmp._t.getId().equals(id)) {
+				System.out.println("I found and remove " + id + " transaction");
+				if (tmp == _first) {
+					System.out.println("It's first");
+					if (tmp == _last) {
+						System.out.println("It's last");
+						_last = null;
+						_first = null;
+					} else {
+						setNewExtremeVal(tmp._next, "first");
+					}
+				} else if (tmp == _last) {
+					System.out.println("It's last");
+					setNewExtremeVal(tmp._prev, "last");
 				} else {
-					this.first = null;
+					tmp._prev._next = tmp._next;
+					tmp._next._prev = tmp._prev;
 				}
-				if (tmp.next != null) {
-                	tmp.next.prev = tmp.prev;
-				} else {
-					this.last = null;
-				}
-				this.size--;
-				return tmp.t;
+				_size--;
+				return tmp._t;
 			}
-			tmp = tmp.next;
+			tmp = tmp._next;
 		}
 		throw new TransactionNotFoundException("Transaction not found");
 	}
 
+	@Override
 	public Transaction[] toArray() {
-        Transaction[] arr = new Transaction[this.size];
-        Node tmp = this.first;
-        for (int i = 0; i < this.size; ++i) {
-            arr[i] = tmp.t;
-            tmp = tmp.next;
-        }
-        return arr;
+		if (this.getSize() != 0) {
+			Transaction[] arr = new Transaction[this.getSize()];
+			Node tmp = _first;
+			for (int i = 0; i < this.getSize(); ++i) {
+				arr[i] = tmp._t;
+				tmp = tmp._next;
+			}
+        	return arr;
+		} else {
+			System.out.println("It's empty");
+			return (null);
+		}
     }
 
 	public int getSize() {
-        return this.size;
+        return _size;
     }
 }
 
