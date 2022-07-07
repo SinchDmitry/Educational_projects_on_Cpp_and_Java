@@ -15,12 +15,6 @@ class WrongNumOfCommand extends RuntimeException {
     }
 }
 
-class WrongUser extends RuntimeException {
-    public WrongUser(String msg) {
-        super(msg);
-    }
-}
-
 public class Menu {
     private boolean _mode = false;
     private final TransactionsService _clients;
@@ -65,7 +59,7 @@ public class Menu {
             printMenu();
             if (input.hasNextInt()) {
                 switch (input.nextInt()) {
-                    case 1 : addNewUser();
+                    case 1 : addNewUser(input);
                         break;
                     case 2 : viewUserBalance();
                         break;
@@ -77,12 +71,15 @@ public class Menu {
                         if (_mode) {
                             removeTransactionByID();
                         } else {
-                            finishExec();
+                            input.close();
+                            System.exit(0);
                         }
                         break;
                     case 6 : checkTransferValidity();
                         break;
-                    case 7 : finishExec();
+                    case 7 :
+                        input.close();
+                        System.exit(0);
                         break;
                     default :
                         throw new WrongNumOfCommand("Error : wrong number of command");
@@ -95,14 +92,34 @@ public class Menu {
 
     public void addNewUser(Scanner input) {
         while (true) {
-            String tmp;
+            String tmpName;
+            int    tmpBalance
             try {
-                tmp = input.nextLine();
+                tmpName = input.nextLine();
             } catch (NoSuchElementException e) {
                 continue;
             }
-            String[] inputData = tmp.split("\\s+");
-            
+            String[] inputData = tmpName.split("\\s+");
+            if (inputData.length == 0) {
+                System.out.println("Error : Set Name");
+                continue;
+            } else if (inputData.length == 1) {
+                System.out.println("Error : Set Balance");
+                continue;
+            } else if (inputData.length > 2){
+                System.out.println("Error : This command accept only two arguments");
+                continue;
+            } else {
+                try {
+                    tmpBalance = Integer.parseInt(inputData[1]);
+                } catch (NumberFormatException e) {
+                    System.out.print("Error: Balance must be a number");
+                    continue;
+                }
+                System.out.println("User with ID = " +
+                        _clients.addNewUser(inputData[0], tmpBalance) + " is added");
+            }
+            break;
         }
     }
 
@@ -121,6 +138,4 @@ public class Menu {
     public void removeTransactionByID() {}
 
     public void checkTransferValidity() {}
-
-    public void finishExec() {}
 }

@@ -21,10 +21,11 @@ public class TransactionsService {
         return _length;
     }
 
-    public void addNewUser(String name, int balance) {
+    public int addNewUser(String name, int balance) {
         User newUser = new User(name, balance);
         _users.add(newUser);
         _length++;
+        return newUser.getId();
     }
 
     public int getBalance (int id) {
