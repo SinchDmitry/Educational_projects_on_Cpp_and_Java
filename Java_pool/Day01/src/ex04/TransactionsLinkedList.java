@@ -1,4 +1,4 @@
-package ex03;
+package ex04;
 
 class TransactionNotFoundException extends RuntimeException {
     public TransactionNotFoundException(String msg) {
@@ -11,7 +11,7 @@ public class TransactionsLinkedList implements TransactionsList {
 	static class Node {
 		public Node _prev;
 		public Node _next;
-		public Transaction  _t;
+		public Transaction _t;
 
 		public Node(Node prev, Node next, Transaction t) {
 			_prev = prev;
@@ -58,7 +58,7 @@ public class TransactionsLinkedList implements TransactionsList {
 	}
 
 	@Override
-	public Transaction	remove(String id) {
+	public Transaction remove(String id) {
 		Node tmp = _first;
 
 		while (tmp != null) {
@@ -92,14 +92,14 @@ public class TransactionsLinkedList implements TransactionsList {
 	public Transaction[] toArray() {
 		Transaction[] arr = new Transaction[this.getSize()];
 		if (this.getSize() != 0) {
-			TransactionsLinkedList.Node tmp = _first;
+			Node tmp = _first;
 			for (int i = 0; i < this.getSize(); ++i) {
 				arr[i] = tmp._t;
 				tmp = tmp._next;
 			}
 		}
 		return arr;
-	}
+    }
 
 	public int getSize() {
         return _size;

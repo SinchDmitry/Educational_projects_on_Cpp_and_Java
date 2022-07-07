@@ -1,4 +1,4 @@
-package ex01;
+package ex04;
 
 class UserIdsGenerator {
     private static UserIdsGenerator _singleton = null;
@@ -15,5 +15,7 @@ class UserIdsGenerator {
         return _singleton;
     }
 
-    public int generateId() { return _id++; }
+    public int generateId() {
+        return _id++;
+    }
 }            

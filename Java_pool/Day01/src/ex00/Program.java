@@ -5,7 +5,7 @@ public class Program {
         User dima = new User("Dimka", 200);
         User sber = new User("SberBank", 100000);
         Transaction tOne = new Transaction(sber, dima, Transaction.Operation.credit, -50000);
-        Transaction tTwo = new Transaction(sber, dima, Transaction.Operation.debet, 60000);
+        Transaction tTwo = new Transaction(sber, dima, Transaction.Operation.debit, 60000);
 
         System.out.println(dima.toString());
         System.out.println(sber.toString());

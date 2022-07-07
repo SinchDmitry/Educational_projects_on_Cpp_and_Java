@@ -1,4 +1,4 @@
-package ex00;
+package ex04;
 
 import java.util.UUID;
 
@@ -7,16 +7,16 @@ class Transaction {
         debit,
         credit
     };
-    private final UUID  _id;
-    private final User  _recipient;
-    private final User  _sender;
-    private int         _amount;
-    private String      _opName;
+    private final String    _id;
+    private User            _recipient;
+    private User            _sender;
+    private int             _amount;
+    private String          _opName;
 
     public Transaction(User recipient, User sender, Operation type, int amount) {
         _recipient = recipient;
         _sender = sender;
-        _id = UUID.randomUUID();
+        _id = UUID.randomUUID().toString();
         _amount = 0;
         _opName = "INCOME";
         if ((type == Operation.debit && amount > 0 && recipient.getBalance() > amount) ||
@@ -28,7 +28,15 @@ class Transaction {
         }
     }
 
-    public UUID getId() {
+    public Transaction(Transaction copy) {
+        _id = copy._id;
+        _amount = copy._amount;
+        _recipient = copy._recipient;
+        _sender = copy._sender;
+        _opName = copy._opName;
+    }
+
+    public String getId() {
         return _id;
     }
 
@@ -53,10 +61,18 @@ class Transaction {
         recipient.setBalance(recipient.getBalance() + amount);
     }
 
+    public Transaction analogTransaction(Transaction firstTr) {
+        Transaction secondTr = new Transaction(firstTr);
+        secondTr._amount = -firstTr._amount;
+        secondTr._recipient = firstTr._sender;
+        secondTr._sender = firstTr._recipient;
+        secondTr._opName = secondTr._opName.equals("INCOME") ? "OUTCOME" : "INCOME";
+        return secondTr;
+    }
+
     @Override
     public String toString() {
-        setBalance(_recipient, _sender, _amount);
-        return String.format("\nNew transaction registred :\n\tid : %s | %s -> %s | sum : %d$ | type : %s\nNew balanse:\n\t%10s : %d\n\t%10s : %d\n", 
+        return String.format("\nTransaction registred :\n\tid : %s | %s -> %s | sum : %d$ | type : %s\nNew balanse:\n\t%10s : %d\n\t%10s : %d\n",
             this.getId(), this.getSender().getName(), this.getRecipient().getName(), this.getAmount(),
             this.getOpName(), this.getSender().getName(), this.getSender().getBalance(),
             this.getRecipient().getName(), this.getRecipient().getBalance());

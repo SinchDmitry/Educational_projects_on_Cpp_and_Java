@@ -18,7 +18,7 @@ class UsersArrayList implements UsersList {
 	public void	add(User user) {
 		if (_size == _array.length) {
 			User[] tmp = _array;
-			_array = new User[_array.length + _array.length / 2];
+			_array = new User[_array.length * 2];
 			System.arraycopy(tmp, 0, _array, 0, _size);
 		}
 		_array[_size] = user;

@@ -10,7 +10,7 @@ public class Program {
         System.out.println(paul);
 		System.out.println(alex);
 
-        Transaction tOne = new Transaction(paul, alex, Transaction.Operation.debet, 1000);
+        Transaction tOne = new Transaction(paul, alex, Transaction.Operation.debit, 1000);
 		tOne.setBalance(paul, alex, 1000);
 		System.out.println(tOne);
         paul.addTransaction(tOne);
@@ -33,7 +33,7 @@ public class Program {
         System.out.println("Paul's transactions");
         Transaction[] paulTr = paul.getTransactionArray();
         for (int i = 0; i < paulTr.length; ++i) {
-			System.out.printf("########### %d# ##########\n", i);
+			System.out.printf("########### %d ##########\n", i);
             System.out.println(paulTr[i].toString());
         }
 		System.out.println("########### END ###########");

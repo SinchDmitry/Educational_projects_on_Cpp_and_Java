@@ -4,7 +4,7 @@ import java.util.UUID;
 
 class Transaction {
     enum    Operation   {
-        debet,
+        debit,
         credit
     };
     private final String    _id;
@@ -19,11 +19,11 @@ class Transaction {
         _id = UUID.randomUUID().toString();
         _amount = 0;
         _opName = "INCOME";
-        if ((type == Operation.debet && amount > 0 && recipient.getBalance() > amount) ||
+        if ((type == Operation.debit && amount > 0 && recipient.getBalance() > amount) ||
             (type == Operation.credit && amount < 0 && recipient.getBalance() > (-1) * amount)) {
             _amount = amount;
         }
-        if (type == Operation.debet){
+        if (type == Operation.debit){
             _opName = "OUTCOME";
         }
     }

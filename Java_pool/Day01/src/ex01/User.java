@@ -14,21 +14,13 @@ class User{
         }
 	}
 
-	public  int getId() {
-        return _id;
-    }
+	public  int getId() { return _id; }
 
-    public  String getName() {
-        return _name;
-    }
+    public  String getName() { return _name; }
 
-    public  int getBalance() {
-        return _balance;
-    }
+    public  int getBalance() { return _balance; }
 
-    public  void setName(String name) {
-        _name = name;
-    }
+    public  void setName(String name) { _name = name; }
 
     public  void setBalance(int balance) {
         if (balance >= 0) {
