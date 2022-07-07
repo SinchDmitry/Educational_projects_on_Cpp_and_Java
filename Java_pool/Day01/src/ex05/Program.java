@@ -1,4 +1,4 @@
-package ex04;
+package ex05;
 
 public class Program {
 	public static void main(String[] args) {
@@ -42,6 +42,5 @@ public class Program {
         System.out.println("-Show num of illegal transactions-");
         errTr = clients.checkCorrectTr();
         System.out.println(errTr.length + " incorrect transactions registered");
-        System.exit(0);
     }
 }
