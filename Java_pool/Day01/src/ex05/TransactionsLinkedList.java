@@ -65,16 +65,13 @@ public class TransactionsLinkedList implements TransactionsList {
 			if (tmp._t.getId().equals(id)) {
 				System.out.println("I found and remove " + id + " transaction");
 				if (tmp == _first) {
-					System.out.println("It's first");
 					if (tmp == _last) {
-						System.out.println("It's last");
 						_last = null;
 						_first = null;
 					} else {
 						setNewExtremeVal(tmp._next, "first");
 					}
 				} else if (tmp == _last) {
-					System.out.println("It's last");
 					setNewExtremeVal(tmp._prev, "last");
 				} else {
 					tmp._prev._next = tmp._next;

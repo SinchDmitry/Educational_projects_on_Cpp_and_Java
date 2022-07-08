@@ -32,6 +32,10 @@ public class TransactionsService {
         return _users.getArId(id).getBalance();
     }
 
+    public String getUserName (int id) {
+        return _users.getArId(id).getName();
+    }
+
     public void doTransaction ( int idSender, int idRecipient, int amount) {
         User sender = _users.getArId(idSender);
         User recipient = _users.getArId(idRecipient);
@@ -84,7 +88,7 @@ public class TransactionsService {
         return tmp.toArray();
     }
 
-    public void removeTr(int id, String trId) {
-        _users.getArId(id).removeTransaction(trId);
+    public Transaction removeTr(int id, String trId) {
+       return  _users.getArId(id).removeTransaction(trId);
     }
 }

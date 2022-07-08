@@ -8,8 +8,8 @@ class Transaction {
         credit
     };
     private final String    _id;
-    private User _recipient;
-    private User _sender;
+    private User            _recipient;
+    private User            _sender;
     private int             _amount;
     private String          _opName;
 
