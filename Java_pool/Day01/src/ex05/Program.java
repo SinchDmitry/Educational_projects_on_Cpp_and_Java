@@ -10,5 +10,7 @@ public class Program {
 
         app.checkMode(args);
         app.commandExecutor(input);
+        input.close();
+        System.exit(0);
     }
 }
