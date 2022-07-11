@@ -57,8 +57,8 @@ public class TransactionsService {
 
     private boolean checkTwoUsersOp(User objContact, Transaction objTr) {
         Transaction[] contactTr = objContact.getTransactionArray();
-        for (int k = 0; k < contactTr.length; ++k) {
-            if (contactTr[k].getId().equals(objTr.getId())) {
+        for (Transaction transaction : contactTr) {
+            if (transaction.getId().equals(objTr.getId())) {
                 return true;
             }
         }
@@ -70,13 +70,13 @@ public class TransactionsService {
         for (int i = 0; i < _users.getSize(); ++i) {
             User obj = _users.getIndex(i);
             Transaction[] objTr = obj.getTransactionArray();
-            for (int j = 0; j < objTr.length; ++j) {
-                User objContact = objTr[j].getSender();
+            for (Transaction transaction : objTr) {
+                User objContact = transaction.getSender();
                 if (objContact.getId() == obj.getId()) {
-                    objContact = objTr[j].getRecipient();
+                    objContact = transaction.getRecipient();
                 }
-                if (!checkTwoUsersOp(objContact, objTr[j])) {
-                    tmp.add(objTr[j]);
+                if (!checkTwoUsersOp(objContact, transaction)) {
+                    tmp.add(transaction);
                 }
             }
         }
