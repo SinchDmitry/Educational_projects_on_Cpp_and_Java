@@ -1,18 +1,20 @@
 package ex00;
 
-import com.sun.istack.internal.NotNull;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class SignatureChecker {
-    private Map<String, int[]> _signMap;
+    private final Map<String, int[]> _signMap;
 
     public SignatureChecker() {
         _signMap = new HashMap<>();
+        try {
+            new FileOutputStream("/Users/aarchiba/Desktop/Educational_projects_on_Cpp_and_Java/Java_pool/Day02/src/ex00/result.txt").close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean parseSign(String inputString) {
@@ -58,36 +60,42 @@ public class SignatureChecker {
         }
     }
 
-    private int maxMapLength() {
-        int l =_signMap.values().stream().map(value -> value.length).max(Integer::compare).orElse(0);
-        if (l == 0) {
-            System.err.println("Error");
+    private void    printResult (String output) {
+        try {
+            FileOutputStream result = new FileOutputStream("/Users/aarchiba/Desktop/Educational_projects_on_Cpp_and_Java/Java_pool/Day02/src/ex00/result.txt", true);
+            result.write(output.getBytes(StandardCharsets.UTF_8));
+            result.write('\n');
+            result.close();
+        } catch (IOException e) {
+            e.printStackTrace();
             System.exit(-1);
         }
-        return l;
     }
 
     private boolean checkPartOfSign(int[] val, int[] parseVal) {
-        if () {
-
+        if (val.length < parseVal.length) {
+            return false;
+        } else {
+            for (int i = 0; i < parseVal.length; ++i) {
+                if (parseVal[i] != val[i]) {
+                    return false;
+                }
+            }
         }
+        return true;
     }
 
     public void findSign(String path) {
         try (FileInputStream readFile = new FileInputStream(path)) {
             int red;
-            List<Integer> redBytes = new ArrayList<>()
+            List<Integer> redBytes = new ArrayList<>();
             List<Map.Entry<String, int[]>> tmpSignPrev = null;
-            List<Map.Entry<String, int[]>> tmpSign = null;
-
-//            int [] redBytes = new int[maxMapLength() + 1];
-
-//            for (int i = 0; (redBytes[i] = readFile.read()) != -1 || i < maxMapLength() + 1; ++i) {
-
+            List<Map.Entry<String, int[]>> tmpSign;
             while ((red = readFile.read()) != -1) {
                 redBytes.add(red);
+                int[] tmp = redBytes.stream().mapToInt(i -> i).toArray();
                 tmpSign = _signMap.entrySet().stream().filter(it -> checkPartOfSign(it.getValue(),
-                        redBytes.stream().mapToInt(i -> i).toArray())).collect(Collectors.toList());
+                        tmp)).collect(Collectors.toList());
                 if (tmpSign.size() == 0) {
                     redBytes.remove(redBytes.size() - 1);
                     break;
@@ -104,10 +112,10 @@ public class SignatureChecker {
                     return;
                 }
                 System.out.println("PROCESSED");
-                //print;
+                printResult(tmpSign.get(0).getKey());
             }
         } catch (FileNotFoundException e) {
-            System.err.println("Error: signature.txt not found");
+            System.err.println("Error: input file not found");
             System.exit(-1);
         } catch (IOException e) {
             System.err.printf("Error : %s\n", e.getMessage());
