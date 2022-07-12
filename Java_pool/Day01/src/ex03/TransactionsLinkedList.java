@@ -7,7 +7,6 @@ class TransactionNotFoundException extends RuntimeException {
 }
 
 public class TransactionsLinkedList implements TransactionsList {
-
 	static class Node {
 		public Node 		_prev;
 		public Node 		_next;
