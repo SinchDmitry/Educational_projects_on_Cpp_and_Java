@@ -32,7 +32,7 @@ public class SignatureChecker {
         return true;
     }
 
-    public void createMap() {
+    public boolean createMap() {
         String path =
                 "/Users/aarchiba/Desktop/Educational_projects_on_Cpp_and_Java/Java_pool/Day02/src/ex00/signature.txt";
         try (FileInputStream readFile = new FileInputStream(path)) {
@@ -58,6 +58,7 @@ public class SignatureChecker {
             System.err.println("Error : parse error");
             System.exit(-1);
         }
+        return !_signMap.isEmpty();
     }
 
     private void    printResult (String output) {
