@@ -14,7 +14,7 @@ public class Program {
                     System.err.printf("%s is not a number\n", args[0]);
                 }
             } else {
-                System.out.println("Error : miss wright prefix to count");
+                System.out.println("Error : miss right prefix to count");
             }
         }
         return -1;
