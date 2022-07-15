@@ -2,10 +2,8 @@ package ex02;
 
 public class Program {
     private static int readArgument(String arg, String prefix) {
-        System.out.println(arg);
         if (arg.startsWith(prefix)) {
             try {
-                System.out.println(arg);
                 int count = Integer.parseInt(arg.substring(prefix.length()));
                 return count;
             } catch (NumberFormatException e) {
@@ -38,7 +36,7 @@ public class Program {
 
     public static void main(String[] args) {
         ArraySum array = parseInitData(args);
-
+        array.splitArray();
         System.exit(0);
     }
 }
