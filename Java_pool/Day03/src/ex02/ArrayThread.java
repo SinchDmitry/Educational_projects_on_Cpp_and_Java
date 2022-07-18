@@ -26,7 +26,7 @@ public class ArrayThread extends Thread {
                 _sum += _array[i];
             }
         }
-        System.out.printf("Thread %d: from %d to %d sum is %d\n", _id, _start, _finish, _sum);
+        System.out.printf("Thread %d: from %d to %d sum is %d\n", _id, _start, (_finish - 1), _sum);
     }
 
 }

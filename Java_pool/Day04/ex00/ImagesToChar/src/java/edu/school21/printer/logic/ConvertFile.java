@@ -16,16 +16,16 @@ public class ConvertFile {
         }
     }
 
-    public static char[][] toCharArray(String filename)
+    public static char[][] toCharArray(String filename, char black, char white)
             throws IOException, ConvertException {
         BufferedImage img = ImageIO.read(new File(filename));
         char[][] tmp = new char[img.getWidth()][img.getHeight()];
         for (int i = 0; i < img.getWidth(); ++i) {
             for (int j = 0; j < img.getHeight(); ++j) {
                 if (img.getRGB(i, j) == Color.BLACK.getRGB()) {
-                    tmp[i][j] = 'o';
+                    tmp[i][j] = black;
                 } else if (img.getRGB(i, j) == Color.WHITE.getRGB()) {
-                    tmp[i][j] = '.';
+                    tmp[i][j] = white;
                 } else {
                     throw new ConvertException("incorrect image");
                 }

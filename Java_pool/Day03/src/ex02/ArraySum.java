@@ -49,7 +49,7 @@ public class ArraySum {
             tmpStep += patternSize;
             part.start();
             try {
-                Thread.sleep(1);
+                Thread.sleep(2);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

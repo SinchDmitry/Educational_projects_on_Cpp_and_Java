@@ -35,8 +35,12 @@ public class Program {
     }
 
     public static void main(String[] args) {
-        ArraySum array = parseInitData(args);
-        array.splitArray();
-        System.exit(0);
+        ArraySum array = null;
+        if ((array = parseInitData(args)) != null) {
+            array.splitArray();
+            System.exit(0);
+        } else {
+            System.exit(-1);
+        }
     }
 }
