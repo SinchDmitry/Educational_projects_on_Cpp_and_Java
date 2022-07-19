@@ -58,7 +58,7 @@ public class FileLauncher extends Thread {
                     Files.copy(urlStream, Paths.get(fileName), StandardCopyOption.REPLACE_EXISTING);
                     System.out.printf("%s finish download file number %d\n", this.getName(), info._numOfFile);
                 } catch (InterruptedException e) {
-                    System.out.printf("%s caught InterruptedException\n", this.getName());
+                    System.err.printf("Error : %s caught InterruptedException\n", this.getName());
                 } catch (MalformedURLException e) {
                     System.err.printf("Error : %s file %d URL is malformed\n", this.getName(), info._numOfFile);
                 } catch (IOException e) {
@@ -73,12 +73,10 @@ public class FileLauncher extends Thread {
             _numThreads = numOfThread;
             _queue = new LinkedBlockingQueue<>();
             _workList = new ArrayList<>();
-//            System.out.println(fileData.size());
             for (int i = 1; i <= fileData.size(); ++i) {
                 try {
                     FileInfo tmpData = new FileInfo(fileData.get(i), i);
                     _queue.put(tmpData);
-//                    System.out.println(tmpData);
                 } catch (InterruptedException e) {
                     System.err.println(e.getMessage());
                 }

@@ -1,6 +1,6 @@
 package edu.school21.printer.app;
 
-import edu.school21.printer.logic.ConvertFile;
+import edu.school21.printer.logic.ConvertFileFolder;
 import java.io.IOException;
 
 public class Program {
@@ -17,14 +17,13 @@ public class Program {
     public static void main(String[] args) {
         if (args.length == 2 && checkInputArgs(args) == 0) {
             char[][] newArr = null;
-            String path =
-                    "/Users/aarchiba/Desktop/Educational_projects_on_Cpp_and_Java/Java_pool/Day04/ex01/ImagesToChar/src/resources/image.bmp";
+            String path = "/resources/image.bmp";
             try {
-                newArr = ConvertFile.toCharArray(path, args[0].toCharArray()[0], args[1].toCharArray()[0]);
+                newArr = ConvertFileFolder.toCharArray(path, args[0].toCharArray()[0], args[1].toCharArray()[0]);
             } catch (IOException e) {
                 System.err.printf("Error : failed to read '%s': %s\n", args[0], e.getMessage());
                 return;
-            } catch (ConvertFile.ConvertException e) {
+            } catch (ConvertFileFolder.ConvertException e) {
                 System.err.printf("Error : failed to convert '%s': %s\n", args[0], e.getMessage());
                 return;
             }
