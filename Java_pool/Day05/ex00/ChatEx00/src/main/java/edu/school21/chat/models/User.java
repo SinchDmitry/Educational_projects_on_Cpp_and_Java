@@ -1,6 +1,5 @@
-package edu.school21.chat;
+package edu.school21.chat.models;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -61,26 +60,36 @@ public class User {
     /* override functions */
 
     @Override
-    public boolean equals (Object o) {
-        if (this != o) {
-            boolean res = false;
-            if (o instanceof User) {
-                res = Objects.equals(id, ((User) o).id) && Objects.equals(login, ((User) o).login) &&
-                        Objects.equals(password, ((User) o).password) && Objects.equals(createdRooms,
-                        ((User) o).createdRooms) && Objects.equals(joinedRooms, ((User) o).joinedRooms);
-            }
-            return res;
-        }
-        return true;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id && login.equals(user.login) && password.equals(user.password)
+                && createdRooms.equals(user.createdRooms) && joinedRooms.equals(user.joinedRooms);
     }
 
     @Override
-    public String toString() {
-        return  "{ id : " + id + ",\n" +
-                "login : " + login + ",\n" +
-                "password : " + password +  ",\n" +
-                "createdRooms : " + //////// RoomList //////// + ",\n" +
-                "joinedRooms : " + /////// RoomList //////// + "}";
+    public int hashCode() {
+        return Objects.hash(id, login, password, createdRooms, joinedRooms);
     }
 
+//    @Override
+//    public String toString() {
+//        return  "id : " + id + ",\n" +
+//                "login : " + login + ",\n" +
+//                "password : " + password +  ",\n" +
+//                "createdRooms : " + createdRooms + ",\n" +
+//                "joinedRooms : " + joinedRooms;
+//    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", createdRooms=" + createdRooms +
+                ", joinedRooms=" + joinedRooms +
+                '}';
+    }
 }
