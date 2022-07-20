@@ -43,7 +43,6 @@ public class TransactionsLinkedList implements TransactionsList {
 	@Override
 	public void	add(Transaction t) {
 		Node tmp;
-
 		if (_last == null){
 			tmp = new Node(null, null, t);
 			_last = tmp;

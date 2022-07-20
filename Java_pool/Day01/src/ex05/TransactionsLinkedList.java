@@ -44,7 +44,6 @@ public class TransactionsLinkedList implements TransactionsList {
 	@Override
 	public void	add(Transaction t) {
 		Node tmp;
-
 		if (_last == null){
 			tmp = new Node(null, null, t);
 			_last = tmp;
@@ -60,7 +59,6 @@ public class TransactionsLinkedList implements TransactionsList {
 	@Override
 	public Transaction remove(String id) {
 		Node tmp = _first;
-
 		while (tmp != null) {
 			if (tmp._t.getId().equals(id)) {
 				System.out.println("I found and remove " + id + " transaction");

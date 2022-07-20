@@ -1,9 +1,9 @@
 package edu.school21.printer.logic;
 
 import com.beust.jcommander.Parameter;
+import com.beust.jcommander.Parameters;
 import com.diogonunes.jcdp.color.ColoredPrinter;
 import com.diogonunes.jcdp.color.api.Ansi;
-import com.beust.jcommander.Parameters;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

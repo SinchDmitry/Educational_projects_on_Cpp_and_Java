@@ -6,7 +6,7 @@ class Transaction {
     enum    Operation   {
         debit,
         credit
-    };
+    }
     private final String    _id;
     private User            _recipient;
     private User            _sender;

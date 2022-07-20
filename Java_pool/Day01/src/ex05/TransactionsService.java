@@ -39,7 +39,6 @@ public class TransactionsService {
     public void doTransaction ( int idSender, int idRecipient, int amount) {
         User sender = _users.getArId(idSender);
         User recipient = _users.getArId(idRecipient);
-
         if (amount > 0 && sender.getBalance() < amount ||
                 amount < 0 && recipient.getBalance() < -amount) {
             throw new IncorrectTransactionException("Insufficient funds");

@@ -28,9 +28,9 @@ public class Program {
                 System.out.printf("IncorrectTransactionException: %s\n", e.getMessage());
         }
         Transaction[] paulTr = clients.getTransactionList(2);
-        for (int i = 0; i < paulTr.length; ++i) {
-                System.out.println(paulTr[i].toString());
-        }
+            for (Transaction transaction : paulTr) {
+                    System.out.println(transaction.toString());
+            }
 
         System.out.println("-Show num of illegal transactions-");
         Transaction[] errTr = clients.checkCorrectTr();

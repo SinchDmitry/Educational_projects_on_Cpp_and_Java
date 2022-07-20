@@ -7,16 +7,16 @@ public class Program {
         Transaction tOne = new Transaction(sber, dima, Transaction.Operation.credit, -50000);
         Transaction tTwo = new Transaction(sber, dima, Transaction.Operation.debit, 60000);
 
-        System.out.println(dima.toString());
-        System.out.println(sber.toString());
-        System.out.println(tOne.toString());
-        System.out.println(tOne.toString());
+        System.out.println(dima);
+        System.out.println(sber);
+        System.out.println(tOne);
+        System.out.println(tOne);
         dima.setName("Dmitriy Georgievich");
         dima.setBalance(dima.getBalance() + 19800);
-        System.out.println(dima.toString());
-        System.out.println(tTwo.toString());
-        System.out.println(tTwo.toString());
+        System.out.println(dima);
+        System.out.println(tTwo);
+        System.out.println(tTwo);
         dima.setName("dimka");
-        System.out.println(dima.toString());
+        System.out.println(dima);
     }   
 }

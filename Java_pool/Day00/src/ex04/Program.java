@@ -71,13 +71,13 @@ public class Program {
                 }
 
             }
-            System.out.printf("\n");
+            System.out.println();
             c++;
         }
         for(int j = 0; j < counter; j++) {
             System.out.printf("%3c", (char)asc_key[j]);
         }
-        System.out.printf("\n");
+        System.out.println();
     }
 
     private static void findTenSym(short[] asc_num, short[] asc_key, short[] key) {

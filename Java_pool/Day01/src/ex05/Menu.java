@@ -199,11 +199,11 @@ public class Menu {
                 }
                 try {
                     usersTr = _clients.getTransactionList(tmpId);
-                    for (int i = 0; i < usersTr.length; ++i) {
-                        User tmp = usersTr[i].getRecipient();
+                    for (Transaction transaction : usersTr) {
+                        User tmp = transaction.getRecipient();
                         System.out.printf("To %s(id = %d) %d with id = %s\n",
-                                tmp.getName(), tmp.getId(), usersTr[i].getAmount(),
-                                usersTr[i].getId());
+                                tmp.getName(), tmp.getId(), transaction.getAmount(),
+                                transaction.getId());
                     }
                     break;
                 } catch (RuntimeException e) {
@@ -216,7 +216,6 @@ public class Menu {
     public void removeTransactionByID(Scanner input) {
         int             tmpId;
         String          tmpTrId;
-        Transaction[]   usersTr;
         Transaction     removedTr;
         while (true) {
             System.out.println("Enter a user ID and a transfer ID");
@@ -247,8 +246,8 @@ public class Menu {
     }
 
     public boolean checkTransaction(Transaction[] userTr, String trId) {
-        for (int i = 0; i < userTr.length; ++i ) {
-            if (userTr[i].getId().equals(trId)) {
+        for (Transaction transaction : userTr) {
+            if (transaction.getId().equals(trId)) {
                 return true;
             }
         }
@@ -258,14 +257,14 @@ public class Menu {
     public void checkTransferValidity() {
         System.out.println("Check results:");
         Transaction[] errTr = _clients.checkCorrectTr();
-        for (int i = 0; i < errTr.length; ++i) {
-            User tmp = errTr[i].getRecipient();
+        for (Transaction transaction : errTr) {
+            User tmp = transaction.getRecipient();
             Transaction[] recTr = tmp.getTransactionArray();
-            if (!checkTransaction(recTr, errTr[i].getId())) {
-                tmp = errTr[i].getSender();
+            if (!checkTransaction(recTr, transaction.getId())) {
+                tmp = transaction.getSender();
             }
             System.out.printf("%s(id = %d) has an unacknowledged transfer id = %s for %d\n",
-                    tmp.getName(), tmp.getId(), errTr[i].getId(), errTr[i].getAmount());
+                    tmp.getName(), tmp.getId(), transaction.getId(), transaction.getAmount());
         }
     }
 }

@@ -8,8 +8,14 @@ public class Program {
         Menu app = new Menu(clients);
         Scanner input = new Scanner(System.in);
 
-        app.checkMode(args);
-        app.commandExecutor(input);
+        try {
+                app.checkMode(args);
+                app.commandExecutor(input);
+        } catch (Exception e) {
+                System.err.println(e.getMessage());
+                input.close();
+                System.exit(-1);
+        }
         input.close();
         System.exit(0);
     }
