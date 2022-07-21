@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class User {
-    private int            id;
+    private Long           id;
     private String         login;
     private String         password;
     private List<Chatroom> createdRooms;
@@ -13,7 +13,7 @@ public class User {
     public User() {
     }
 
-    public User(int id, String login, String password, List<Chatroom> adminRooms, List<Chatroom> joinRooms) {
+    public User(Long id, String login, String password, List<Chatroom> adminRooms, List<Chatroom> joinRooms) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -23,7 +23,7 @@ public class User {
 
     /* getters */
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -45,7 +45,7 @@ public class User {
 
     /* setters */
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

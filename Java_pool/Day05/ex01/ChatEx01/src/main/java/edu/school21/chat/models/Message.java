@@ -4,13 +4,13 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Message {
-    private int             id;
+    private Long             id;
     private User            author;
     private Chatroom        chatroom;
     private String          message;
     private LocalDateTime   data;
 
-    public Message(int id, User author, Chatroom chatroom, String message, LocalDateTime data) {
+    public Message(Long id, User author, Chatroom chatroom, String message, LocalDateTime data) {
         this.id = id;
         this.author = author;
         this.chatroom = chatroom;
@@ -18,7 +18,7 @@ public class Message {
         this.data = data;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -38,7 +38,7 @@ public class Message {
         return data;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -81,4 +81,5 @@ public class Message {
                 ", data=" + data +
                 '}';
     }
+
 }
