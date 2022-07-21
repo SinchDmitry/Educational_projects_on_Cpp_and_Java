@@ -40,16 +40,16 @@ public class Program {
         System.exit(-1);
     }
 
-    private static short findMin(int week, Scanner input) {
-        int     tmp;
-        short   minScore = 10;
+    private static long findMin(int week, Scanner input) {
+        long   tmp;
+        long   minScore = 10;
 
-        for (short i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++) {
             if (input.hasNextInt()) {
                 tmp = input.nextInt();
                 if (tmp > 0 && tmp < 10) {
                     if (minScore > tmp) {
-                        minScore = (short)tmp;
+                        minScore = tmp;
                     }
                 } else {
                     errorEnd();

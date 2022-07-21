@@ -41,7 +41,7 @@ public class Program {
 
     private static int addTime(int[][] dataOfLesson, int day, int time) {
         int numOfLessons = 0;
-        for (; day < 30; day += 7) {
+        for (; day <= 30; day += 7) {
             int j = 0;
             for (; j < 10; ++j) {
                 if (dataOfLesson[day - 1][j] == 0) {
@@ -61,9 +61,9 @@ public class Program {
     }
 
     private static int addClasses(int[][] dataOfLesson, Scanner input) {
-        String  tmpDay;
-        int     tmpNum;
-        int     numOfClasses = 0;
+        String tmpDay;
+        int tmpNum;
+        int numOfClasses = 0;
         for (int i = 0; i < 10; i++) {
             if (input.hasNextInt()) {
                 tmpNum = input.nextInt();
@@ -97,11 +97,11 @@ public class Program {
                         default:
                             errorEnd();
                     }
-                } else if (input.hasNextLine() && input.next().equals(".")) {
-                    break;
                 } else {
                     errorEnd();
                 }
+            } else if (input.hasNextLine() && input.next().equals(".")) {
+                break;
             } else {
                 errorEnd();
             }
@@ -171,37 +171,37 @@ public class Program {
     private static int[][] addAttend(String[] names, int[][] dataOfLesson, Scanner input,
                                      int height, int width) {
         int[][] attendArray = new int[height][width];
-        String  tmpName = input.next();
+        String  tmpName;
         int     attendMarker = 0;
         int     timeNum = 0;
         int     dayNum = 0;
         int     stringSchedule;
         for (;;) {
-           if (input.hasNextLine() && !input.hasNextInt()) {
-               tmpName = input.next();
-               if (tmpName.equals(".")) {
-                   break;
-               } else {
-                   stringSchedule = checkStudent(names, tmpName, height);
-                   if (input.hasNextInt()) {
-                       timeNum = input.nextInt();
-                       if (timeNum < 1 || timeNum > 6) {
-                           errorEnd();
-                       } else if (input.hasNextInt()) {
-                           dayNum = input.nextInt();
-                           if (dayNum < 1 || dayNum > 30) {
-                               errorEnd();
-                           } else {
-                               attendMarker = checkMarker(input);
-                           }
-                       } else {
-                           errorEnd();
-                       }
-                   }
-               }
-               int[] columnSchedule = calculateColumnNum(dataOfLesson, timeNum, dayNum);
-               attendArray[stringSchedule][columnSchedule[0]] = attendMarker;
-           }
+            if (input.hasNextLine() && !input.hasNextInt()) {
+                tmpName = input.next();
+                if (tmpName.equals(".")) {
+                    break;
+                } else {
+                    stringSchedule = checkStudent(names, tmpName, height);
+                    if (input.hasNextInt()) {
+                        timeNum = input.nextInt();
+                        if (timeNum < 1 || timeNum > 6) {
+                            errorEnd();
+                        } else if (input.hasNextInt()) {
+                            dayNum = input.nextInt();
+                            if (dayNum < 1 || dayNum > 30) {
+                                errorEnd();
+                            } else {
+                                attendMarker = checkMarker(input);
+                            }
+                        } else {
+                            errorEnd();
+                        }
+                    }
+                }
+                int[] columnSchedule = calculateColumnNum(dataOfLesson, timeNum, dayNum);
+                attendArray[stringSchedule][columnSchedule[0]] = attendMarker;
+            }
         }
         return  (attendArray);
     }
