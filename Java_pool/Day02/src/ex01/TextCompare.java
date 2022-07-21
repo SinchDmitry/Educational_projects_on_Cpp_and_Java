@@ -30,9 +30,6 @@ public class TextCompare {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        for (int i = 0 ; i < words.length; ++i) {
-//            System.out.println(words[i]);
-//        }
         return sum;
     }
 
