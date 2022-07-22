@@ -18,7 +18,6 @@ public class ConvertFileCommander {
     private static String blackPixel;
 
     public ConvertFileCommander() {
-
     }
 
     public static class ConvertException extends RuntimeException {

@@ -5,15 +5,18 @@ import edu.school21.chat.models.Message;
 import edu.school21.chat.models.User;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Optional;
 
 public class MessagesRepositoryJdbcImpl implements MessagesRepository {
     private DataSource dataSource;
     private String     messageInfo;
+
+    public class NotSavedSubEntityException extends RuntimeException {
+        public NotSavedSubEntityException(String msg) {
+            super(msg);
+        }
+    }
 
     public MessagesRepositoryJdbcImpl(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -52,5 +55,30 @@ public class MessagesRepositoryJdbcImpl implements MessagesRepository {
             System.err.printf("%s\n", e.getMessage());
         }
         return Optional.empty();
+    }
+
+    @Override
+    public void save(Message message) {
+        if (message.getAuthor().getId() == null || message.getChatroom().getId() == null) {
+            throw new NotSavedSubEntityException("Error : ID is null");
+        }
+        try {
+            Connection conSQL = dataSource.getConnection();
+            conSQL.setSchema("chat");
+            String requestText = "insert into chat.message (author_id, room_id, text, time) " +
+                    "values (?, ?, ?, ?) returning id;";
+            PreparedStatement request = conSQL.prepareStatement(requestText);
+            request.setLong(1, message.getAuthor().getId());
+            request.setLong(2, message.getChatroom().getId());
+            request.setString(3, message.getMessage());
+            request.setTimestamp(4, Timestamp.valueOf(message.getData()));
+            ResultSet res = request.executeQuery();
+            if (!res.next()) {
+                throw new NotSavedSubEntityException("Error : failed to save message");
+            }
+            message.setId(res.getLong(1));
+        } catch (SQLException e) {
+            throw new NotSavedSubEntityException(e.getMessage());
+        }
     }
 }

@@ -14,7 +14,7 @@ public class Program {
                     .build()
                     .parse(args);
         } catch (Exception e) {
-            System.out.println("Неверные арги!!!");
+            System.out.println("Error : wrong arguments");
             return;
         }
         try {
