@@ -24,4 +24,4 @@
 &emsp; **day06** - JUnit/Mockito. Today you will learn the basics of module and integration testing. <br/>
 &emsp; **day07** - Reflection. Today you will develop your own frameworks that use the reflection mechanism. <br/>
 &emsp; **day08** - Spring. Today you will learn about enterprise-level Java development and the basics of the Spring framework. <br/>
-&emsp; **day09**
+&emsp; **day09** - Today you will implement the basic mechanism of a client/server application based on Java—Sockets API
