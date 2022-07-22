@@ -79,7 +79,7 @@ public class Program {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        User somebody = new User(6L, "shreck", "boloto", new ArrayList<>(), new ArrayList<>());
+        User somebody = new User(5L, "shreck", "boloto", new ArrayList<>(), new ArrayList<>());
         Chatroom boloto = new Chatroom(6L, "boloto", somebody, new ArrayList<>());
         Message msg = new Message(null, somebody, boloto, "My uje priehali?", null);
         System.out.println("Save new message");

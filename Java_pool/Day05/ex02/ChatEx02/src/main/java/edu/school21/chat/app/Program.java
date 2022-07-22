@@ -54,7 +54,7 @@ public class Program {
 
         System.out.println("Correct author ID, room ID & trying to save new message");
 
-        somebody.setId(6L);
+        somebody.setId(5L);
         boloto.setId(6L);
 
         try {
