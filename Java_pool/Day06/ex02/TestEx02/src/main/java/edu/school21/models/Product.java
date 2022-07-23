@@ -1,4 +1,4 @@
-package main.java.edu.school21.models;
+package edu.school21.models;
 
 import java.util.Objects;
 

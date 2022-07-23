@@ -1,6 +1,6 @@
-package main.java.edu.school21.repositories;
+package edu.school21.repositories;
 
-import main.java.edu.school21.models.Product;
+import edu.school21.models.Product;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -20,8 +20,7 @@ public class ProductsRepositoryJdbcImpl implements ProductsRepository {
         List<Product> allItems = new ArrayList<>();
         try {
             Connection conSQL = dataSource.getConnection();
-            conSQL.setSchema("public");
-            String requestText = "select * from public.shop";
+            String requestText = "select * from shop";
             PreparedStatement request = conSQL.prepareStatement(requestText);
             ResultSet res = request.executeQuery();
             while (res.next()) {
@@ -40,8 +39,7 @@ public class ProductsRepositoryJdbcImpl implements ProductsRepository {
         Product tmp = null;
         try {
             Connection conSQL = dataSource.getConnection();
-            conSQL.setSchema("public");
-            String requestText = "select  * from public.shop where id = ?;";
+            String requestText = "select  * from shop where id = ?;";
             PreparedStatement request = conSQL.prepareStatement(requestText);
             request.setLong(1, id);
             ResultSet res = request.executeQuery();
@@ -60,17 +58,13 @@ public class ProductsRepositoryJdbcImpl implements ProductsRepository {
     public void save(Product product) {
         try {
             Connection conSQL = dataSource.getConnection();
-            conSQL.setSchema("public");
-            String requestText = "insert into public.shop (id, name, coast) " +
+            String requestText = "insert into shop (id, name, coast) " +
                     "values (?, ?, ?)";
             PreparedStatement request = conSQL.prepareStatement(requestText);
             request.setLong(1, product.getId());
             request.setString(2, product.getName());
             request.setInt(3, product.getCoast());
-            ResultSet res = request.executeQuery();
-            if (!res.next()) {
-                System.err.println("Error : failed to save product");
-            }
+            request.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Save error");
         }
@@ -80,9 +74,8 @@ public class ProductsRepositoryJdbcImpl implements ProductsRepository {
     public void update(Product product) {
         try {
             Connection conSQL = dataSource.getConnection();
-            conSQL.setSchema("public");
-            String requestText = "update public.shop set id = ?, name = ?, coast = ?" +
-                    "where public.shop.id = ?;";
+            String requestText = "update shop set id = ?, name = ?, coast = ?" +
+                    "where shop.id = ?;";
             PreparedStatement request = conSQL.prepareStatement(requestText);
             request.setLong(1, product.getId());
             request.setString(2, product.getName());
@@ -95,13 +88,13 @@ public class ProductsRepositoryJdbcImpl implements ProductsRepository {
     }
 
     @Override
-    public void delete(Product product) {
+    public void delete(Long id) {
         try {
             Connection conSQL = dataSource.getConnection();
-            conSQL.setSchema("public");
-            String requestText = "delete from public.shop where id = ?";
+//            conSQL.setSchema("public");
+            String requestText = "delete from shop where id = ?";
             PreparedStatement request = conSQL.prepareStatement(requestText);
-            request.setLong(1, product.getId());
+            request.setLong(1, id);
             request.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Update error");
