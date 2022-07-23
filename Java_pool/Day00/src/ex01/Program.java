@@ -22,9 +22,6 @@ public class Program {
                 }
             }
         }
-        if (exitCode != 0) {
-            System.err.println("Illegal Argument");
-        }
         else {
             System.out.println(res + " " + i);
         }
