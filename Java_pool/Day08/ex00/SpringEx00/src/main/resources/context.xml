@@ -17,7 +17,7 @@
     </bean>
     <bean id = "printerWithPrefix"
           class = "edu.school21.spring.printers.PrinterWithPrefixImpl" >
-        <constructor-arg name="render" ref="rendererStandardImpl" />
+        <constructor-arg name="render" ref="rendererErrImpl" />
     </bean>
     <bean id = "rendererErrImpl"
           class = "edu.school21.spring.renderers.RendererErrImpl" >

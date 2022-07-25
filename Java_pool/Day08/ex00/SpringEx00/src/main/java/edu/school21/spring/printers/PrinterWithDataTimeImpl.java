@@ -13,6 +13,6 @@ public class PrinterWithDataTimeImpl implements Printer {
 
     @Override
     public void print(String text) {
-        render.printToConsole(text + LocalDateTime.now().toString());
+        render.printToConsole(text + " " +   LocalDateTime.now().toString());
     }
 }
