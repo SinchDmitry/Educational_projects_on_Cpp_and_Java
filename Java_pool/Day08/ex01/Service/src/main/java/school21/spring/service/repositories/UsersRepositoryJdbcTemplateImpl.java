@@ -1,21 +1,20 @@
 package school21.spring.service.repositories;
 
-import javax.sql.DataSource;
-
-import school21.spring.service.models.User;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import school21.spring.service.models.User;
 
+import javax.sql.DataSource;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
-    private NamedParameterJdbcTemplate jdbcTemplate;
+    private final NamedParameterJdbcTemplate jdbcTemplate;
 
     public UsersRepositoryJdbcTemplateImpl(DataSource dataSource) {
         this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);

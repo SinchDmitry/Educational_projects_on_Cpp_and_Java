@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class UsersRepositoryJdbcImpl implements UsersRepository {
-    private DataSource dataSource;
+    private final DataSource dataSource;
 
     public UsersRepositoryJdbcImpl(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -24,14 +24,16 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
         String queryStr = "SELECT * FROM users WHERE id = ?;";
 
         try (Connection con = dataSource.getConnection();
-             PreparedStatement query = con.prepareStatement(queryStr);) {
+             PreparedStatement query = con.prepareStatement(queryStr)) {
             query.setLong(1, id);
-           try (ResultSet r = query.executeQuery();) {
+           try (ResultSet r = query.executeQuery()) {
                if (r.next()) {
                    return new User(r.getLong(1), r.getString(2));
                }
            }
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
         return null;
     }
 
@@ -42,12 +44,14 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
 
         try (Connection con = dataSource.getConnection();
              PreparedStatement query = con.prepareStatement(queryStr);
-             ResultSet r = query.executeQuery();) {
+             ResultSet r = query.executeQuery()) {
             while (r.next()) {
                 User u = new User(r.getLong(1), r.getString(2));
                 retList.add(u);
             }
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
         return retList;
     }
 
@@ -56,11 +60,13 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
         String queryStr = "INSERT INTO users VALUES(?, ?);";
 
         try (Connection con = dataSource.getConnection();
-             PreparedStatement query = con.prepareStatement(queryStr);) {
+             PreparedStatement query = con.prepareStatement(queryStr)) {
             query.setLong(1, entity.getId());
             query.setString(2, entity.getEmail());
             query.executeUpdate();
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     @Override
@@ -72,7 +78,9 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
             query.setString(1, entity.getEmail());
             query.setLong(2, entity.getId());
             query.executeUpdate();
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     @Override
@@ -80,10 +88,12 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
         String queryStr = "DELETE FROM users WHERE id = ?;";
 
         try (Connection con = dataSource.getConnection();
-             PreparedStatement query = con.prepareStatement(queryStr);) {
+             PreparedStatement query = con.prepareStatement(queryStr)) {
             query.setLong(1, id);
             query.executeUpdate();
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     @Override
@@ -91,14 +101,16 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
         String queryStr = "SELECT * FROM users WHERE email = ?;";
 
         try (Connection con = dataSource.getConnection();
-             PreparedStatement query = con.prepareStatement(queryStr);) {
+             PreparedStatement query = con.prepareStatement(queryStr)) {
             query.setString(1, email);
             try (ResultSet r = query.executeQuery();) {
                 if (r.next()) {
                     return Optional.of(new User(r.getLong(1), r.getString(2)));
                 }
             }
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
         return Optional.empty();
     }
 }
