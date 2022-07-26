@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Jul 26 15:22:34 2022
+# Make data base, printed on Tue Jul 26 16:03:33 2022
 
 # Variables
 
@@ -131,7 +131,7 @@ ROS_DISTRO = noetic
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 43716
+GIO_LAUNCHED_DESKTOP_FILE_PID = 48353
 # automatic
 %F = $(notdir $%)
 # environment
@@ -279,6 +279,7 @@ WINDOWPATH = 2
 # default
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
 # environment
+ 
 GJS_DEBUG_OUTPUT = stderr
 # default
 .RECIPEPREFIX := 
@@ -287,14 +288,13 @@ LC_ADDRESS = ru_RU.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 43766
+VSCODE_PID = 48403
 # variable set hash-table stats:
 # Load=138/1024=13%, Rehash=0, Collisions=23/160=14%
 
 # Pattern-specific Variable Values
 
 # No pattern-specific variable values.
- 
 
 # Directories
 
@@ -356,6 +356,6 @@ GNUmakefile:
 # strcache performance: lookups = 21 / hit rate = 14%
 # hash-table stats:
 # Load=18/8192=0%, Rehash=0, Collisions=1/21=5%
-# Finished Make data base on Tue Jul 26 15:22:34 2022
+# Finished Make data base on Tue Jul 26 16:03:33 2022
 
  
