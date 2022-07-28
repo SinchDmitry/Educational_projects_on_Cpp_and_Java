@@ -23,7 +23,7 @@ public class Main {
                                 new AnnotationConfigApplicationContext(SocketsApplicationConfig.class);
                         Server server = context.getBean("server", Server.class);
                         if (server.listen(port)) {
-                            System.out.println("Server has started successfully");
+                            System.out.println("Server starts successfully");
                             server.run();
                         }
                         System.out.println("Error : failed to start server");
