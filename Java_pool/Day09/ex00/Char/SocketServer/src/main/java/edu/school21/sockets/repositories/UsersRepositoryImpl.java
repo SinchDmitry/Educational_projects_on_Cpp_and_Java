@@ -35,10 +35,17 @@ public class UsersRepositoryImpl implements UsersRepository {
         return this.jdbcTemplate.query("select * from users;", new BeanPropertyRowMapper<>(User.class));
     }
 
+//    @Override
+//    public void save(User entity) {
+//        this.jdbcTemplate.update("insert into users values(?, ?, ?);",
+//                entity.getId(), entity.getLogin(), entity.getPassword());
+//    }
+
     @Override
     public void save(User entity) {
-        this.jdbcTemplate.update("insert into users values(?, ?) returning id;",
-                entity.getLogin(), entity.getPassword());
+        String sql = "INSERT INTO users(login, password) VALUES(?, ?) RETURNING id;";
+
+        this.jdbcTemplate.queryForObject(sql, Long.class, entity.getLogin(), entity.getPassword());
     }
 
     @Override
@@ -57,7 +64,7 @@ public class UsersRepositoryImpl implements UsersRepository {
         try {
             User tmp = this.jdbcTemplate.query("select * from users where login = ?;",
                     new Object[]{login}, new BeanPropertyRowMapper<>(User.class)).stream().findAny().orElse(null);
-            return tmp == null ? Optional.of(tmp) : Optional.empty();
+            return tmp != null ? Optional.of(tmp) : Optional.empty();
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }

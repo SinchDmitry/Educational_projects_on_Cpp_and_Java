@@ -41,18 +41,19 @@ public class Server {
                 BufferedReader input = new BufferedReader(stream);
                 PrintWriter output = new PrintWriter(user.getOutputStream(), true);
             ) {
+                output.println("Hello from Server!");
                 String tmp = input.readLine();
                 String username;
                 String password;
                 if (tmp.equals("signUp")) {
-                    System.out.println("Enter username:");
+                    output.println("Enter username:");
                     if ((username = input.readLine()) != null) {
-                        System.out.println("Enter password:");
+                        output.println("Enter password:");
                         if ((password = input.readLine()) != null) {
                             if (service.signUp(username, password)) {
-                                System.out.println("Successful!");
+                                output.println("Successful!");
                             } else {
-                                System.out.println("Error : failed to sign up");
+                                output.println("Error : failed to sign up");
                             }
                         }
                     }
@@ -62,7 +63,7 @@ public class Server {
                     System.err.println("Error : wrong command");
                 }
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                System.err.println("Error");
             }
         }
     }
