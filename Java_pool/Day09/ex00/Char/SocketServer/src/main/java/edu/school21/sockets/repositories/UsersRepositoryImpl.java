@@ -35,18 +35,17 @@ public class UsersRepositoryImpl implements UsersRepository {
         return this.jdbcTemplate.query("select * from users;", new BeanPropertyRowMapper<>(User.class));
     }
 
-//    @Override
-//    public void save(User entity) {
-//        this.jdbcTemplate.update("insert into users values(?, ?, ?);",
-//                entity.getId(), entity.getLogin(), entity.getPassword());
-//    }
-
     @Override
     public void save(User entity) {
-        String sql = "INSERT INTO users(login, password) VALUES(?, ?) RETURNING id;";
-
-        this.jdbcTemplate.queryForObject(sql, Long.class, entity.getLogin(), entity.getPassword());
+        this.jdbcTemplate.update("insert into users(login, password) values(?, ?)",
+                entity.getLogin(), entity.getPassword());
     }
+
+//    @Override
+//    public void save(User entity) {
+//        String sql = "INSERT INTO users(login, password) VALUES(?, ?);";
+//        this.jdbcTemplate.queryForObject(sql, Long.class, entity.getLogin(), entity.getPassword());
+//    }
 
     @Override
     public void update(User entity) {
