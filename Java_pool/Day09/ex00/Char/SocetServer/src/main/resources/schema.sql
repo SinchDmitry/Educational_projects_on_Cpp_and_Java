@@ -1,6 +1,5 @@
-
-drop table if exists chat.user, chat.chatroom, chat.message;
-create table if not exists chat.user (
+drop table if exists users
+create table if not exists  users (
     id bigserial primary key unique,
     login text,
     password varchar(20)

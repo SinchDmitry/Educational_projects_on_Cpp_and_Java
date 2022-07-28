@@ -1,14 +1,4 @@
-set time zone 'Europe/Moscow';
-
-create or replace function random_val() returns int as $$
-declare
-    rnd int := floor(random() * ((5 - 1) + 1)) + 1;
-begin
-    return rnd;
-end;
-$$ language plpgsql;
-
-insert into chat.user (login, password)
+insert into users (login, password)
 values  ('SilenceMurder', 'qwertyui'),
         ('PowerRanger', '123456789'),
         ('SpeedyRacer', 'qWeRtYuI123456789'),

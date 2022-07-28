@@ -1,4 +1,5 @@
 package edu.school21.sockets.services;
 
-public class UsersService {
+public interface UsersService {
+    public boolean signUp(String username, String password);
 }

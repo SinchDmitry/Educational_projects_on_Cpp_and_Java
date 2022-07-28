@@ -10,54 +10,53 @@ import java.util.List;
 import java.util.Optional;
 
 public class UsersRepositoryImpl implements UsersRepository {
-        private final JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
-        public UsersRepositoryImpl(DataSource dataSource) {
-            this.jdbcTemplate = new JdbcTemplate(dataSource);
-        }
+    public UsersRepositoryImpl(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
+    }
 
-        @Override
-        public User findById(Long id) {
-            try {
-                return this.jdbcTemplate.query("select * from users where id = ?;", new Object[]{id},
-                        new BeanPropertyRowMapper<>(User.class)).stream().findAny().orElse(null);
-            } catch (EmptyResultDataAccessException e) {
-                return null;
-            }
-        }
-
-        @Override
-        public List<User> findAll() {
-            return this.jdbcTemplate.query("select * from users;", new BeanPropertyRowMapper<>(User.class));
-        }
-
-        @Override
-        public void save(User entity) {
-            this.jdbcTemplate.update("insert into users values(?, ?);", entity.getId(), entity.getEmail());
-        }
-
-        @Override
-        public void update(User entity) {
-            this.jdbcTemplate.update("update users set email = ? where id = ?;", entity.getEmail(), entity.getId());
-        }
-
-        @Override
-        public void delete(Long id) {
-            this.jdbcTemplate.update("delete from users where id = ?;", id);
-        }
-
-        @Override
-        public Optional<User> findByEmail(String email) {
-            try {
-                User tmp = this.jdbcTemplate.query("select * from users where email = ?;",
-                        new Object[]{email}, new BeanPropertyRowMapper<>(User.class)).stream().findAny().orElse(null);
-                return tmp == null ? Optional.of(tmp) : Optional.empty();
-            } catch (EmptyResultDataAccessException e) {
-                return Optional.empty();
-            }
-        }
     @Override
-    public Optional<User> findByUsername(String email) {
-        return Optional.empty();
+    public Optional<User> findById(Long id) {
+        try {
+            return this.jdbcTemplate.query("select * from users where id = ?;", new Object[]{id},
+                    new BeanPropertyRowMapper<>(User.class)).stream().findAny();
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
+        }
+    }
+
+    @Override
+    public List<User> findAll() {
+        return this.jdbcTemplate.query("select * from users;", new BeanPropertyRowMapper<>(User.class));
+    }
+
+    @Override
+    public void save(User entity) {
+        this.jdbcTemplate.update("insert into users values(?, ?) returning id;",
+                entity.getLogin(), entity.getPassword());
+    }
+
+    @Override
+    public void update(User entity) {
+        this.jdbcTemplate.update("update users set login = ?, password = ? where id = ?;",
+                entity.getLogin(), entity.getPassword(), entity.getId());
+    }
+
+    @Override
+    public void delete(Long id) {
+        this.jdbcTemplate.update("delete from users where id = ?;", id);
+    }
+
+    @Override
+    public Optional<User> findByUsername(String login) {
+        try {
+            User tmp = this.jdbcTemplate.query("select * from users where login = ?;",
+                    new Object[]{login}, new BeanPropertyRowMapper<>(User.class)).stream().findAny().orElse(null);
+            return tmp == null ? Optional.of(tmp) : Optional.empty();
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
+        }
     }
 }
+
