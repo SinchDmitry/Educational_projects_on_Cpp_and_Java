@@ -27,6 +27,7 @@ public class UsersServiceImpl implements UsersService{
             repository.save(tmp);
             return true;
         }
+        System.out.println("Error : failed to create new user " + username + ". Username already exists");
         return false;
     }
 }
