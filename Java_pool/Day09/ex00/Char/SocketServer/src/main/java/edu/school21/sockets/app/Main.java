@@ -14,7 +14,7 @@ public class Main {
                 try {
                     port = Integer.parseInt(args[0].substring(prefix.length()));
                 } catch (NumberFormatException e) {
-                    System.err.println(e.getMessage() + " breakpoint1");
+                    System.err.println(e.getMessage());
                     return;
                 }
                 if (port > 0) {
@@ -28,7 +28,7 @@ public class Main {
                         }
                         System.out.println("Error : failed to start server");
                     } catch (Exception e) {
-                        System.err.println(e.getMessage() + " breakpoint2");
+                        System.err.println(e.getMessage());
                     }
                 }
             }

@@ -1,35 +1,40 @@
 package edu.school21.sockets.app;
 
-import edu.school21.sockets.config.SocketsApplicationConfig;
 import edu.school21.sockets.server.Server;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.LinkedList;
 
 public class Main {
-    public static void main(String[] args) {
+    public static final LinkedList<Server> servers = new LinkedList<>();
+
+    public static void main(String[] args) throws IOException {
         int port = 0;
-        if (args.length == 1) {
-            String prefix = "--server-port=";
-            if (args[0].startsWith(prefix)) {
+        if (args.length == 1 && args[0].startsWith("--server-port=")
+                && args[0].split("=").length == 2) {
+            try {
+                port = Integer.parseInt(args[0].split("=")[1]);
+            } catch (NumberFormatException e) {
+                System.err.println(e.getMessage());
+                return;
+            }
+            if (port > 0) {
+                System.out.println("Server started!");
+                ServerSocket serverSocket = new ServerSocket(port);
                 try {
-                    port = Integer.parseInt(args[0].substring(prefix.length()));
-                } catch (NumberFormatException e) {
-                    System.err.println(e.getMessage() + " breakpoint1");
-                    return;
-                }
-                if (port > 0) {
-                    try {
-                        ApplicationContext context =
-                                new AnnotationConfigApplicationContext(SocketsApplicationConfig.class);
-                        Server server = context.getBean("server", Server.class);
-                        if (server.listen(port)) {
-                            System.out.println("Server starts successfully");
-                            server.run();
-                        }
-                        System.out.println("Error : failed to start server");
-                    } catch (Exception e) {
-                        System.err.println(e.getMessage() + " breakpoint2");
+                    while (true) {
+                        Socket socket = serverSocket.accept();
+                       try {
+                           servers.add(new Server(socket));
+                       } catch (IOException e) {
+                           socket.close();
+                       }
                     }
+                } catch (IOException e) {
+                    System.err.println(e.getMessage());
+                    serverSocket.close();
                 }
             }
         }

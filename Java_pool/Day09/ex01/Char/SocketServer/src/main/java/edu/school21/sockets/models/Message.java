@@ -5,11 +5,11 @@ import java.util.Objects;
 
 public class Message {
     private Long             id;
-    private User            author;
+    private String           author;
     private String          message;
     private LocalDateTime data;
 
-    public Message(Long id, User author, String message, LocalDateTime data) {
+    public Message(Long id, String author, String message, LocalDateTime data) {
         this.id = id;
         this.author = author;
         this.message = message;
@@ -20,7 +20,7 @@ public class Message {
         return id;
     }
 
-    public User getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
@@ -36,7 +36,7 @@ public class Message {
         this.id = id;
     }
 
-    public void setAuthor(User author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 
