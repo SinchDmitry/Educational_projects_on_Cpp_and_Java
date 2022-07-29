@@ -2,6 +2,7 @@ package edu.school21.sockets.repositories;
 
 import edu.school21.sockets.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,7 +17,7 @@ public class UsersRepositoryImpl implements UsersRepository {
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public UsersRepositoryImpl(DataSource dataSource) {
+    public UsersRepositoryImpl(@Qualifier("hikariDataSource") DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 

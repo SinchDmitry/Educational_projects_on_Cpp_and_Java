@@ -4,3 +4,10 @@ create table if not exists  users (
     login text,
     password varchar(100)
 );
+
+create table if not exists messages (
+    id bigserial primary key unique,
+    author text,
+    message text,
+    data timestamp
+);
