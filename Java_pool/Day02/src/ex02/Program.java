@@ -20,7 +20,6 @@ public class Program{
         if (checkInput(args, prefixPath)) {
             JavaMicroShell manager = new JavaMicroShell();
             if (manager.setHomeDirPath(args[0], prefixPath)) {
-                System.out.println(manager.getHomeDirPath());
                 manager.executeCmd();
             }
         }

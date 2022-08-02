@@ -38,7 +38,11 @@ class UsersArrayList implements UsersList {
     }
 
     public User getIndex(int index) {
-        return _array[index];
+        if (index <= _array.length - 1) {
+            return _array[index];
+        } else {
+            throw new UserNotFoundException("User Index = " + id + " not found");
+        }
     }
 
     public int getSize() {

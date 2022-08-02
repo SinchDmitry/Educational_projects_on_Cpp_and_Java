@@ -16,6 +16,9 @@ public class JavaMicroShell {
 
     public boolean setHomeDirPath(String path, String prefix) {
         String tmpPath = path.substring(prefix.length());
+        if (_homeDirPath != null) {
+            tmpPath = _homeDirPath + "/" + tmpPath;
+        }
         _homeDirPath = Paths.get(tmpPath).toAbsolutePath().normalize();
         if (_homeDirPath.toFile().exists()) {
             if (_homeDirPath.toFile().isDirectory()) {
@@ -109,7 +112,6 @@ public class JavaMicroShell {
             } catch (IOException e) {
                 System.err.println(e.getMessage());
             }
-
         }
     }
 }
