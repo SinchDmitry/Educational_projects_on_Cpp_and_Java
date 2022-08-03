@@ -35,10 +35,17 @@ package edu.school21.sockets.app;
 import edu.school21.sockets.client.Client;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Client client = new Client("localhost", Integer.parseInt(args[0].split("=")[1]));
-        client.connection();
+        if (args.length != 0) {
+            try {
+                Client client = new Client("localhost", Integer.parseInt(args[0].split("=")[1]));
+                client.connection();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

@@ -66,7 +66,7 @@ public class Server extends Thread {
         String tmp = input.readLine();
         switch (tmp) {
             case "signUp": signUp(); break;
-            case "signIp": signIn(); break;
+            case "signIn": signIn(); break;
             case "exit": break;
             default: System.err.println("Error : wrong command"); break;
         }
@@ -94,7 +94,7 @@ public class Server extends Thread {
             output.flush();
             if ((password = input.readLine()) != null) {
                 if (service.signIn(username, password)) {
-                    output.println("Successful!");
+                    output.println("start");
                     output.flush();
                 } else {
                     output.println("Error : failed to sign up");
