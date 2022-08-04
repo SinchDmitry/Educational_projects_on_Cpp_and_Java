@@ -38,6 +38,7 @@ public class Server extends Thread {
 
     @Override
     public void run() {
+        System.out.println("here : start");
         if (socket == null) {
             return;
         }
@@ -45,10 +46,13 @@ public class Server extends Thread {
         while (true) {
             try {
                 if ((cmd = input.readLine()) != null) {
+                    System.out.println(cmd);
                     if (cmd.equals("Exit")) {
+                        System.out.println("here : exit");
                         this.closeConnections();
                         break;
                     } else {
+                        System.out.println("here : else");
                         for (Server server : Main.servers) {
                             server.output.println(cmd);
                         }
@@ -67,7 +71,7 @@ public class Server extends Thread {
         switch (tmp) {
             case "signUp": signUp(); break;
             case "signIn": signIn(); break;
-            case "exit": break;
+            case "Exit" : System.exit(-1);
             default: System.err.println("Error : wrong command"); break;
         }
     }
@@ -79,8 +83,9 @@ public class Server extends Thread {
             if ((password = input.readLine()) != null) {
                 if (service.signUp(username, password)) {
                     output.println("start");
+                    output.flush();
                 } else {
-                    output.println("Error : failed to sign up");
+                    output.println("error");
                 }
             }
         }
@@ -97,7 +102,7 @@ public class Server extends Thread {
                     output.println("start");
                     output.flush();
                 } else {
-                    output.println("Error : failed to sign up");
+                    output.println("error");
                 }
             }
         }

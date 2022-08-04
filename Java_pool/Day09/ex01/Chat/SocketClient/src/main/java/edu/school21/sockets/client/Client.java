@@ -62,7 +62,7 @@ public class Client {
     private Socket socket;
     private int port;
     private BufferedReader in;
-    private BufferedWriter out;
+    private PrintWriter  out;
     private BufferedReader reader;
     private String username;
     private String password;
@@ -75,14 +75,14 @@ public class Client {
 
     public void connection() throws IOException {
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+        out = new PrintWriter(socket.getOutputStream(), true);
         reader = new BufferedReader(new InputStreamReader(System.in));
         this.registration();
         new ReadMessage().start();
         new WriteMessage().start();
     }
 
-    private void registration() throws IOException {
+    private void registration() {
         try {
             String cmd = "";
             while (!cmd.equals("signIn") && !cmd.equals("signUp")) {
@@ -95,19 +95,19 @@ public class Client {
             String helloMsg = in.readLine();
             System.out.println(helloMsg);
             username = reader.readLine();
-            System.out.println("debug : " + username);
+//            System.out.println("debug : " + username);
             out.write(username + "\n");
             out.flush();
 
             String getPassword = in.readLine();
             System.out.println(getPassword);
             password = reader.readLine();
-            System.out.println("debug : " + password);
+//            System.out.println("debug : " + password);
             out.write(password + "\n");
             out.flush();
 
             String access = in.readLine();
-            System.out.println("debug : " + access);
+//            System.out.println("debug : " + access);
             if (access.equals("start")) {
                 System.out.println("Chat started!");
             } else if (access.equals("error")) {
@@ -126,6 +126,7 @@ public class Client {
 
     private void closeConnection() throws IOException {
         if (!socket.isClosed()) {
+            out.write("(" + dTime + ") " + username + ": left chat\n");
             socket.close();
             in.close();
             out.close();
@@ -166,10 +167,13 @@ public class Client {
                     dTime = new SimpleDateFormat("HH:mm:ss").format(time);
                     clientText = reader.readLine();
                     if (clientText.equals("Exit")) {
-                        out.write("Exit" + "\n");
+                        System.out.println("here : exit");
+                        out.write("Left the chat\n");
+                        out.flush();
                         Client.this.closeConnection();
                         break;
                     } else {
+                        System.out.println("here : msg");
                         out.write("(" + dTime + ") " + username + ": " + clientText + "\n");
                     }
                     out.flush();
