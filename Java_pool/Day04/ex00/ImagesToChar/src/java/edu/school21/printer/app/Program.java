@@ -1,6 +1,6 @@
 package edu.school21.printer.app;
 
-import edu.school21.printer.logic.ConvertFileFolder;
+import edu.school21.printer.logic.ConvertFile;
 import java.io.IOException;
 
 public class Program {
@@ -18,11 +18,11 @@ public class Program {
         if (args.length == 3 && checkInputArgs(args) == 0) {
             char[][] newArr = null;
             try {
-                newArr = ConvertFileFolder.toCharArray(args[0], args[1].toCharArray()[0], args[2].toCharArray()[0]);
+                newArr = ConvertFile.toCharArray(args[0], args[1].toCharArray()[0], args[2].toCharArray()[0]);
             } catch (IOException e) {
                 System.err.printf("Error : failed to read '%s': %s\n", args[0], e.getMessage());
                 return;
-            } catch (ConvertFileFolder.ConvertException e) {
+            } catch (ConvertFile.ConvertException e) {
                 System.err.printf("Error : failed to convert '%s': %s\n", args[0], e.getMessage());
                 return;
             }

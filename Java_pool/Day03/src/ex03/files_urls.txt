@@ -3,5 +3,4 @@
 3 https://i.pinimg.com/originals/db/a1/62/dba162603c71cac00d3548420c52bac6.png
 4 https://pngimg.com/uploads/balloon/balloon_PNG4969.png
 5 http://tldp.org/LDP/intro-linux/intro-linux.pdf
-6 https://research.nhm.org/pdfs/10840/10840.pdf
-7 https://c.tenor.com/q0Ejci9EQhcAAAAi/rick-astley-rick-roll.gif
+6 https://c.tenor.com/q0Ejci9EQhcAAAAi/rick-astley-rick-roll.gif
