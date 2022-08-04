@@ -55,7 +55,7 @@ public class Program {
     public static void main(String[] args) {
         int numOfTreads = parseInitData(args);
         Map<Integer, String> fileData =
-                parseInputFile("/Users/aarchiba/Desktop/Educational_projects_on_Cpp_and_Java/Java_pool/Day03/src/ex03/files_urls.txt");
+                parseInputFile("/Users/aarchiba/Desktop/oop/Java_pool/Day03/src/ex03/files_urls.txt");
         if (numOfTreads > 0) {
             FileLauncher loader = new FileLauncher(numOfTreads, fileData);
             loader.generalAction();
