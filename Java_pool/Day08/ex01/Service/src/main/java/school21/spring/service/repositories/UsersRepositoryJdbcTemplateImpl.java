@@ -52,7 +52,7 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
         try {
             User tmp = this.jdbcTemplate.query("select * from users where email = ?;",
                     new Object[]{email}, new BeanPropertyRowMapper<>(User.class)).stream().findAny().orElse(null);
-            return tmp == null ? Optional.of(tmp) : Optional.empty();
+            return tmp != null ? Optional.of(tmp) : Optional.empty();
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
