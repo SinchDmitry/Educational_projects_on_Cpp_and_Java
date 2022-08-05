@@ -95,27 +95,24 @@ public class Client {
             String helloMsg = in.readLine();
             System.out.println(helloMsg);
             username = reader.readLine();
-//            System.out.println("debug : " + username);
             out.write(username + "\n");
             out.flush();
 
             String getPassword = in.readLine();
             System.out.println(getPassword);
             password = reader.readLine();
-//            System.out.println("debug : " + password);
             out.write(password + "\n");
             out.flush();
 
             String access = in.readLine();
-//            System.out.println("debug : " + access);
             if (access.equals("start")) {
                 System.out.println("Chat started!");
             } else if (access.equals("error")) {
-                System.out.println("Username already exist!");
+                System.out.println("Bad username or password!");
                 this.closeConnection();
                 System.exit(1);
             } else {
-                System.out.println("Bad username or password!");
+                System.out.println("Username already exist!");
                 this.closeConnection();
                 System.exit(1);
             }
@@ -168,15 +165,15 @@ public class Client {
                     clientText = reader.readLine();
                     if (clientText.equals("Exit")) {
                         System.out.println("here : exit");
-                        out.write("Left the chat\n");
+                        out.write(username + " left the chat\n");
                         out.flush();
                         Client.this.closeConnection();
                         break;
                     } else {
                         System.out.println("here : msg");
                         out.write("(" + dTime + ") " + username + ": " + clientText + "\n");
+                        out.flush();
                     }
-                    out.flush();
                 } catch (IOException e) {
                     try {
                         Client.this.closeConnection();

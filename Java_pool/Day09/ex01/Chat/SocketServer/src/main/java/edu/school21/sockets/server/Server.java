@@ -38,7 +38,6 @@ public class Server extends Thread {
 
     @Override
     public void run() {
-        System.out.println("here : start");
         if (socket == null) {
             return;
         }
@@ -46,13 +45,10 @@ public class Server extends Thread {
         while (true) {
             try {
                 if ((cmd = input.readLine()) != null) {
-                    System.out.println(cmd);
                     if (cmd.equals("Exit")) {
-                        System.out.println("here : exit");
                         this.closeConnections();
                         break;
                     } else {
-                        System.out.println("here : else");
                         for (Server server : Main.servers) {
                             server.output.println(cmd);
                         }
@@ -66,12 +62,10 @@ public class Server extends Thread {
         }
     }
     public void serverStart() throws IOException {
-//        output.println("Hello from Server!");
         String tmp = input.readLine();
         switch (tmp) {
             case "signUp": signUp(); break;
             case "signIn": signIn(); break;
-            case "Exit" : System.exit(-1);
             default: System.err.println("Error : wrong command"); break;
         }
     }
