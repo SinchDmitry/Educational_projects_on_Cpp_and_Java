@@ -108,11 +108,11 @@ public class Client {
             if (access.equals("start")) {
                 System.out.println("Chat started!");
             } else if (access.equals("error")) {
-                System.out.println("Bad username or password!");
+                System.out.println("Username already exist!");
                 this.closeConnection();
                 System.exit(1);
             } else {
-                System.out.println("Username already exist!");
+                System.out.println("Bad username or password!");
                 this.closeConnection();
                 System.exit(1);
             }
@@ -123,7 +123,6 @@ public class Client {
 
     private void closeConnection() throws IOException {
         if (!socket.isClosed()) {
-            out.write("(" + dTime + ") " + username + ": left chat\n");
             socket.close();
             in.close();
             out.close();
@@ -164,13 +163,11 @@ public class Client {
                     dTime = new SimpleDateFormat("HH:mm:ss").format(time);
                     clientText = reader.readLine();
                     if (clientText.equals("Exit")) {
-                        System.out.println("here : exit");
                         out.write(username + " left the chat\n");
                         out.flush();
                         Client.this.closeConnection();
                         break;
                     } else {
-                        System.out.println("here : msg");
                         out.write("(" + dTime + ") " + username + ": " + clientText + "\n");
                         out.flush();
                     }

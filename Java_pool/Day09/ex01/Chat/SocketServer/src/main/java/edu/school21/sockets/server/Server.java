@@ -96,7 +96,7 @@ public class Server extends Thread {
                     output.println("start");
                     output.flush();
                 } else {
-                    output.println("error");
+                    output.println("errorin");
                 }
             }
         }
@@ -115,7 +115,7 @@ public class Server extends Thread {
                     }
                 }
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
