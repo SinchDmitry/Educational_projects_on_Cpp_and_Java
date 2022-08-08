@@ -44,7 +44,9 @@ public class Server extends Thread {
         String cmd;
         while (true) {
             try {
-                if ((cmd = input.readLine()) != null) {
+                cmd = input.readLine();
+
+                if (cmd != null) {
                     if (cmd.equals("Exit")) {
                         this.closeConnections();
                         break;
@@ -80,6 +82,7 @@ public class Server extends Thread {
                     output.flush();
                 } else {
                     output.println("error");
+                    output.flush();
                 }
             }
         }
@@ -97,6 +100,7 @@ public class Server extends Thread {
                     output.flush();
                 } else {
                     output.println("errorin");
+                    output.flush();
                 }
             }
         }

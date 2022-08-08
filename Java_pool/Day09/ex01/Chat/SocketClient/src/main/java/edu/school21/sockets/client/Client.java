@@ -165,8 +165,8 @@ public class Client {
                     if (clientText.equals("Exit")) {
                         out.write(username + " left the chat\n");
                         out.flush();
-                        Client.this.closeConnection();
-                        break;
+//                        Client.this.closeConnection();
+                        System.exit(1);
                     } else {
                         out.write("(" + dTime + ") " + username + ": " + clientText + "\n");
                         out.flush();
