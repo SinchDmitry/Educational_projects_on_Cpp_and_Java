@@ -2,17 +2,17 @@
 
 DiamondTrap::DiamondTrap(void) {
 	_name = "noname";
-	_hitPoints = FragTrap::_hitPoints;
-	_energyPoints = ScavTrap::_energyPoints;
-	_attackDamage = FragTrap::_attackDamage;
-	std::cout << "A noname DiamondTrap created  with default constructor" << std::endl;
+	setHit(FragTrap::_hitPoints);
+	setEnergy(ScavTrap::_energyPoints);
+	setDamage(FragTrap::_attackDamage);
+	std::cout << "A noname DiamondTrap created with default constructor" << std::endl;
 }
 
 DiamondTrap::DiamondTrap(const std::string name) : ClapTrap("suffix" + name) {
 	_name = name;
-	_hitPoints = FragTrap::_hitPoints;
-	_energyPoints = ScavTrap::_energyPoints;
-	_attackDamage = FragTrap::_attackDamage;
+	setHit(FragTrap::_hitPoints);
+	setEnergy(ScavTrap::_energyPoints);
+	setDamage(FragTrap::_attackDamage);
 	std::cout << "A new DiamondTrap created : " << _name << std::endl;
 }
 
@@ -22,10 +22,10 @@ DiamondTrap::~DiamondTrap(void) {
 
 DiamondTrap &DiamondTrap::operator = (const DiamondTrap &op) {
 if (this != &op) {
+		setHit(FragTrap::_hitPoints);
+		setEnergy(ScavTrap::_energyPoints);
+		setDamage(FragTrap::_attackDamage);
 		_name = op._name;
-		_hitPoints = op._hitPoints;
-		_energyPoints = op._energyPoints;
-		_attackDamage = op._attackDamage;
 	}
 	return *this;
 }
@@ -35,10 +35,11 @@ DiamondTrap::DiamondTrap(const DiamondTrap &copy) : ClapTrap::ClapTrap(copy), Fr
 }
 
 void DiamondTrap::attack(std::string const target) {
-	if (_hitPoints > 0 && _energyPoints > 0) {
-		_energyPoints--;
+	if (getHit() > 0 && getEnergy() > 0) {
+		int tmpEnergyPoint = getEnergy();
+		setEnergy(tmpEnergyPoint--);
 		std::cout << "DiamondTrap " << _name << " attacks " << target << ", causing " \
-		<< _attackDamage << " points of damage!" << std::endl;
+		<< getHit() << " points of damage!" << std::endl;
 	} else {
 		std::cout << "DiamondTrap " << _name << "i can't attack" << std::endl;
 	}
@@ -52,8 +53,8 @@ void DiamondTrap::hiMyNameIs() {
 void DiamondTrap::demo(void) {
 	std::cout << "#######################################" << std::endl;
 	std::cout << "DiamondTrap name : " << _name << std::endl;
-	std::cout << _name << " Health point : " << _hitPoints << std::endl;
-	std::cout << _name << " Damage level : " << _attackDamage << std::endl;
-	std::cout << _name << " Energy point : " << _energyPoints << std::endl;
+	std::cout << _name << " Health point : " << getHit() << std::endl;
+	std::cout << _name << " Damage level : " << getDamage() << std::endl;
+	std::cout << _name << " Energy point : " << getEnergy() << std::endl;
 	std::cout << "#######################################" << std::endl;
 }

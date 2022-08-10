@@ -1,7 +1,7 @@
 #include "FragTrap.hpp"
 
 FragTrap::FragTrap(void) {
-	_hitPoints = 100;
+	_hitPoints = 120;
 	_energyPoints = 100;
 	_attackDamage = 30;
 	std::cout << "A noname FragTrap created  with default constructor" << std::endl;
@@ -9,7 +9,7 @@ FragTrap::FragTrap(void) {
 
 FragTrap::FragTrap(const std::string name) {
 	_name = name;
-	_hitPoints = 100;
+	_hitPoints = 120;
 	_energyPoints = 100;
 	_attackDamage = 30;
 	std::cout << "A new FragTrap created : " << _name << std::endl;

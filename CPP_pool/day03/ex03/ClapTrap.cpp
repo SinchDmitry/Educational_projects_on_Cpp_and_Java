@@ -69,6 +69,39 @@ void	ClapTrap::setDamageLevel(int damage) {
 	_attackDamage = damage;
 }
 
+
+void ClapTrap::setName(std::string name) {
+    this->_name = name;
+}
+
+std::string ClapTrap::getName() const {
+    return this->_name;
+}
+
+void ClapTrap::setHit(int amount) {
+    this->_hitPoints = amount;
+}
+
+int ClapTrap::getHit() const {
+    return this->_hitPoints;
+}
+
+void ClapTrap::setEnergy(int amount) {
+    this->_energyPoints = amount;
+}
+
+int ClapTrap::getEnergy() const {
+    return this->_energyPoints;
+}
+
+void ClapTrap::setDamage(int amount) {
+    this->_attackDamage = amount;
+}
+
+int ClapTrap::getDamage() const {
+    return this->_attackDamage;
+}
+
 void ClapTrap::demo(void) {
 	std::cout << "#######################################" << std::endl;
 	std::cout << "ClapTrap name : " << _name << std::endl;
