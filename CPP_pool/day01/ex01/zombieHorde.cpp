@@ -2,6 +2,9 @@
 
 Zombie* zombieHorde(int N, std::string nombre)
 {
+	if (N <= 0) {
+		return NULL;
+	}
 	Zombie *newZombie = new Zombie[N];
 	for (int i = 0; i < N; ++i) {
 		newZombie[i].setName(nombre);
