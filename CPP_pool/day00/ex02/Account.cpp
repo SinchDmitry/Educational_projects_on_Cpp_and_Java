@@ -39,9 +39,9 @@ int	Account::getNbWithdrawals( void ) {
 void	Account::displayAccountsInfos( void ) {
 	Account::_displayTimestamp();
 	std::cout << "accounts:" << Account::getNbAccounts() << ";" << \
-	"total:" << Account::getTotalAmount() << ";" << \
-	"deposits:" << Account::getNbDeposits() << ";" << \
-	"withdrawals:" << Account::getNbWithdrawals() << std::endl;
+	"total:" << getTotalAmount() << ";" << \
+	"deposits:" << getNbDeposits() << ";" << \
+	"withdrawals:" << getNbWithdrawals() << std::endl;
 }
 
 Account::Account( int initial_deposit ) {
@@ -77,9 +77,10 @@ void	Account::makeDeposit( int deposit ) {
 	Account::_displayTimestamp();
 	this->_totalAmount += deposit;
 	std::cout << "index:" << this->_accountIndex << ";" \
-	<< "p_amount:" << this->_amount << ";" << "deposit:" << deposit;
+	<< "p_amount:" << this->_amount << ";" << "deposit:" << deposit << ";";
 	this->_amount += deposit;
 	this->_nbDeposits++;
+	_totalNbDeposits++;
 	std::cout << "amount:" << this->_amount << ";" << "nb_deposits:" \
 	<< this->_nbDeposits << std::endl;
 }
@@ -89,15 +90,16 @@ bool	Account::makeWithdrawal( int withdrawal ) {
 	std::cout << "index:" << this->_accountIndex << ";" \
 	<< "p_amount:" << this->_amount << ";";
 	if (withdrawal > this->_amount) {
-		std::cout << "refised" << std::endl;
+		std::cout << "withdrawal:refused" << std::endl;
 		return false;
 	}
 	else {
 		this->_totalAmount -= withdrawal;
-		std::cout << "withdrawal:" << withdrawal;
+		std::cout << "withdrawal:" << withdrawal << ";";
 		this->_amount -= withdrawal;
 		this->_nbWithdrawals++;
-		std::cout << "amount:" << this->_amount << "nb_withdrawals:" \
+		_totalNbWithdrawals++;
+		std::cout << "amount:" << this->_amount << ";" << "nb_withdrawals:" \
 		<< this->_nbWithdrawals << std::endl;
 		return true;
 	}
@@ -116,12 +118,13 @@ void	Account::displayStatus( void ) const {
 }
 
 void	Account::_displayTimestamp( void ) {
-	time_t	online = time(NULL);
-	tm		*timeinfo = localtime(&online);
-	std::cout << std::setfill('0') << "[" << timeinfo->tm_year + 1900 << \
-	std::setw(2) << timeinfo->tm_mon + 1 << \
-	std::setw(2) <<timeinfo->tm_mday << "_" << \
-	std::setw(2) <<timeinfo->tm_hour << \
-	std::setw(2) <<timeinfo->tm_min << \
-	std::setw(2) <<timeinfo->tm_sec << "]";
+	// time_t	online = time(NULL);
+	// tm		*timeinfo = localtime(&online);
+	// std::cout << std::setfill('0') << "[" << timeinfo->tm_year + 1900 << \
+	// std::setw(2) << timeinfo->tm_mon + 1 << \
+	// std::setw(2) <<timeinfo->tm_mday << "_" << \
+	// std::setw(2) <<timeinfo->tm_hour << \
+	// std::setw(2) <<timeinfo->tm_min << \
+	// std::setw(2) <<timeinfo->tm_sec << "]";
+	std::cout << "[19920104_091532] ";
 }
