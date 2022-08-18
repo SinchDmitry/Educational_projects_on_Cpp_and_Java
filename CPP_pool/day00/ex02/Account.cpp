@@ -118,14 +118,12 @@ void	Account::displayStatus( void ) const {
 }
 
 void	Account::_displayTimestamp( void ) {
-	// time_t	online = time(NULL);
-	// tm		*timeinfo = localtime(&online);
-	// std::cout << std::setfill('0') << "[" << timeinfo->tm_year + 1900 << \
-	// std::setw(2) << timeinfo->tm_mon + 1 << \
-	// std::setw(2) <<timeinfo->tm_mday << "_" << \
-	// std::setw(2) <<timeinfo->tm_hour << \
-	// std::setw(2) <<timeinfo->tm_min << \
-	// std::setw(2) <<timeinfo->tm_sec << "]";
-	std::cout << "[19920104_091532] ";
+	time_t	online = time(NULL);
+	tm		*timeinfo = localtime(&online);
+	std::cout << std::setfill('0') << "[" << timeinfo->tm_year + 1900 << \
+	std::setw(2) << timeinfo->tm_mon + 1 << \
+	std::setw(2) <<timeinfo->tm_mday << "_" << \
+	std::setw(2) <<timeinfo->tm_hour << \
+	std::setw(2) <<timeinfo->tm_min << \
+	std::setw(2) <<timeinfo->tm_sec << "]";
 }
-m
