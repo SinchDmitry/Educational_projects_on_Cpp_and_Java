@@ -19,6 +19,7 @@ class Harl {
 		~Harl( void );
 		int complainLevel( std::string level );
 		void complain( std::string level );
+		int getLvl(void) { return _level; }
 } ;
 
 #endif
